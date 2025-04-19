@@ -273,6 +273,56 @@
       text-align: center;
     }
 
+.header-bg {
+  position: relative;
+  background-image: url('imagem-fundo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.header-content img {
+  max-width: 320px;
+  margin-bottom: 1.5rem;
+  animation: zoomFade 1.6s ease forwards;
+}
+
+.header-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-content p {
+  font-size: 1.3rem;
+}
+
+.scroll-down {
+  font-size: 2rem;
+  animation: bounce 2s infinite;
+}
+
 </style>
 </head>
 <body>
@@ -289,19 +339,15 @@
   <a class="whatsapp-float" href="https://wa.me/5531975655119" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
-  <header>
-    <video autoplay muted loop playsinline id="bg-video">
-      <source src="video-fundo.mp4" type="video/mp4">
-      Seu navegador não suporta vídeo em HTML5.
-    </video>
-    <div class="video-overlay"></div>
-    <div class="header-content">
-    <div class="clouds"></div>
+  <header class="header-bg">
+  <div class="overlay"></div>
+  <div class="header-content">
     <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
     <h1>Bem-vindo à Casa do Céu</h1>
     <p>O refúgio ideal para descanso, lazer e momentos inesquecíveis</p>
     <div class="scroll-down">↓</div>
-  </header>
+  </div>
+</header>
   <section id="sobre" data-aos="fade-up">
     <h2><i class="fas fa-home"></i> Sobre a Casa</h2>
     <p>Localizada no topo das montanhas de Belo Horizonte, a Casa do Céu oferece uma experiência única com piscina, hidromassagem, salão de jogos, vista panorâmica e muito mais.</p>
@@ -311,12 +357,34 @@
     <p>4 quartos aconchegantes, espaços amplos e estrutura completa para grupos e famílias.</p>
   </section>
   <section id="galeria" data-aos="fade-up">
-    <h2><i class="fas fa-images"></i> Galeria de Fotos</h2>
-    <p>Confira alguns registros da Casa do Céu:</p>
-    <div class="gallery">
-      <!-- Adicione suas imagens aqui -->
-    </div>
-  </section>
+  <h2><i class="fas fa-images"></i> Galeria de Fotos</h2>
+  <p>Confira alguns registros da Casa do Céu:</p>
+  <div class="gallery">
+    <img src="cascata.jpg" alt="Cascata">
+    <img src="corredor-1.jpg" alt="Corredor iluminado">
+    <img src="fliperama.jpg" alt="Fliperama">
+    <img src="hidro-1.jpg" alt="Hidromassagem 1">
+    <img src="hidro-2.jpg" alt="Hidromassagem 2">
+    <img src="jardim-vertical.jpg" alt="Jardim vertical">
+    <img src="neon.jpg" alt="Letreiro de neon">
+    <img src="piscina.jpg" alt="Piscina com vista">
+    <img src="quarto-1.jpg" alt="Quarto 1">
+    <img src="quarto-2.jpg" alt="Quarto 2">
+    <img src="quarto-3.jpg" alt="Quarto 3">
+    <img src="quarto-4.jpg" alt="Quarto 4">
+    <img src="quarto-5.jpg" alt="Quarto 5">
+    <img src="salao-jogos-1.jpg" alt="Salão de Jogos">
+    <img src="sinuca.jpg" alt="Mesa de sinuca">
+    <img src="suite-casal-1.jpg" alt="Suíte Casal 1">
+    <img src="suite-casal-2.jpg" alt="Suíte Casal 2">
+    <img src="suite-casal-3.jpg" alt="Suíte Casal 3">
+    <img src="toto.jpg" alt="Totó / Pebolim">
+    <img src="vista-1.jpg" alt="Vista Panorâmica 1">
+    <img src="vista-2.jpg" alt="Vista Panorâmica 2">
+    <img src="vista-3.jpg" alt="Vista Panorâmica 3">
+    <img src="vista-4.jpg" alt="Vista Panorâmica 4">
+  </div>
+</section>
   Estamos localizados na Rua das Nascentes, 10 – Vila Nossa Senhora de Fátima, CEP 30230-627, no topo do Aglomerado da Serra, com vista privilegiada de Belo Horizonte
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3773.891240030217!2d-43.903837!3d-19.938345!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDU2JzE4LjAiUyA0M8KwNTQnMTMuOCJX!5e0!3m2!1spt-BR!2sbr!4v1712687770000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </section>

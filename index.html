@@ -1,6 +1,641 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<head><!DOCTYPE html>
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa do Céu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #ffffff;
+      color: #222;
+      font-family: 'Quicksand', sans-serif;
+      line-height: 1.6;
+      position: relative;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+    nav a {
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #005fa3;
+    }
+    header {
+      background: linear-gradient(to bottom, #a8e0ff, #0077cc);
+      color: white;
+      text-align: center;
+      padding: 10rem 1rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header .clouds {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://svgshare.com/i/xW_.svg') repeat-x;
+      background-size: contain;
+      animation: moveClouds 60s linear infinite;
+      opacity: 0.3;
+      z-index: 1;
+    }
+    @keyframes moveClouds {
+      from { background-position-x: 0; }
+      to { background-position-x: 10000px; }
+    }
+    header img {
+      max-width: 320px;
+      margin-bottom: 1.5rem;
+      z-index: 3;
+      position: relative;
+      animation: zoomFade 1.6s ease forwards;
+    }
+    @keyframes zoomFade {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+      z-index: 3;
+      position: relative;
+    }
+    header p {
+      font-size: 1.3rem;
+      z-index: 3;
+      position: relative;
+    }
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: white;
+      animation: bounce 2s infinite;
+      z-index: 3;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+    }
+    section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: url('https://svgshare.com/i/13D2.svg') no-repeat bottom center/cover;
+    }
+    section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #0077cc;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    section p {
+      font-size: 1.1rem;
+      max-width: 700px;
+    }
+    .gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+    .gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .cta {
+      background-color: #0077cc;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+      border-radius: 12px;
+    }
+    .cta a {
+      background-color: white;
+      color: #0077cc;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+    .cta a:hover {
+      background-color: #005fa3;
+      color: white;
+      transform: scale(1.05);
+    }
+    iframe {
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      width: 100%;
+      height: 300px;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #25d366;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 28px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: pulseBtn 2s infinite;
+    }
+    .instagram-float {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 28px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 998;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: pulseBtn 2s infinite;
+    }
+    .instagram-float:hover {
+      transform: scale(1.1);
+    }
+    @keyframes pulseBtn {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    footer {
+      background-color: #000;
+      color: #ccc;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  #bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    .header-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+.header-bg {
+  position: relative;
+  background-image: url('imagem-fundo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.header-content img {
+  max-width: 320px;
+  margin-bottom: 1.5rem;
+  animation: zoomFade 1.6s ease forwards;
+}
+
+.header-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-content p {
+  font-size: 1.3rem;
+}
+
+.scroll-down {
+  font-size: 2rem;
+  animation: bounce 2s infinite;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  width: 300px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.swiper-slide img:hover {
+  transform: scale(1.05);
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.gallery a {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: 80%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+}
+@media (max-width: 768px) {
+  .gallery a {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+@media (max-width: 480px) {
+  .gallery a {
+    flex: 1 1 100%;
+  }
+}
+
+body {
+  padding-top: 80px;
+  overflow-x: hidden;
+}
+
+nav {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav a {
+  font-size: 0.85rem;
+  padding: 0.5rem;
+}
+
+header {
+  height: 100vh;
+  padding: 6rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header-content h1 {
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+}
+
+.header-content p {
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  padding: 0 1rem;
+}
+
+section {
+  padding: 4rem 1rem;
+  width: 100%;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 1rem;
+}
+.gallery a {
+  flex: 1 1 calc(25% - 20px);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+}
+@media (max-width: 1024px) {
+  .gallery a {
+    flex: 1 1 calc(33.333% - 20px);
+  }
+}
+@media (max-width: 768px) {
+  nav {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  nav a {
+    font-size: 0.8rem;
+  }
+  .gallery a {
+    flex: 1 1 calc(50% - 20px);
+  }
+  header img {
+    max-width: 240px;
+  }
+}
+@media (max-width: 480px) {
+  .gallery a {
+    flex: 1 1 100%;
+  }
+  header {
+    padding: 5rem 1rem 2rem;
+  }
+  header h1 {
+    font-size: 1.8rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+  .scroll-down {
+    font-size: 1.5rem;
+  }
+}
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+</head>
+<body>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#acomodacoes">Acomodações</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <a class="instagram-float" href="https://instagram.com/casadoceubh" target="_blank">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a class="whatsapp-float" href="https://wa.me/5531975655119" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <header class="header-bg">
+  <div class="overlay"></div>
+  <div class="header-content">
+    <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
+    <h1>Bem-vindo à Casa do Céu</h1>
+    <p>O refúgio ideal para descanso, lazer e momentos inesquecíveis</p>
+    <div class="scroll-down">↓</div>
+  </div>
+</header>
+  <section id="sobre" data-aos="fade-up">
+    <h2><i class="fas fa-home"></i> Sobre a Casa</h2>
+    <p>Localizada no topo das montanhas de Belo Horizonte, a Casa do Céu oferece uma experiência única com piscina, hidromassagem, salão de jogos, vista panorâmica e muito mais.</p>
+  </section>
+  <section id="acomodacoes" data-aos="fade-up">
+    <h2><i class="fas fa-bed"></i> Acomodações</h2>
+    <p>4 quartos aconchegantes, espaços amplos e estrutura completa para grupos e famílias.</p>
+  </section>
+  <section id="galeria" data-aos="fade-up">
+  <h2><i class="fas fa-images"></i> Galeria de Fotos</h2>
+  <p>Confira alguns registros da Casa do Céu:</p>
+  <div class="gallery">
+    <a data-fancybox="gallery" href="cascata.jpg">
+      <img src="cascata.jpg" alt="Cascata" />
+    </a>
+    <a data-fancybox="gallery" href="corredor-1.jpg">
+      <img src="corredor-1.jpg" alt="Corredor Iluminado" />
+    </a>
+    <a data-fancybox="gallery" href="fliperama.jpg">
+      <img src="fliperama.jpg" alt="Fliperama" />
+    </a>
+    <a data-fancybox="gallery" href="hidro-1.jpg">
+      <img src="hidro-1.jpg" alt="Hidromassagem 1" />
+    </a>
+    <a data-fancybox="gallery" href="hidro-2.jpg">
+      <img src="hidro-2.jpg" alt="Hidromassagem 2" />
+    </a>
+    <a data-fancybox="gallery" href="jardim-vertical.jpg">
+      <img src="jardim-vertical.jpg" alt="Jardim Vertical" />
+    </a>
+    <a data-fancybox="gallery" href="neon.jpg">
+      <img src="neon.jpg" alt="Letreiro de Neon" />
+    </a>
+    <a data-fancybox="gallery" href="piscina.jpg">
+      <img src="piscina.jpg" alt="Piscina com vista" />
+    </a>
+    <a data-fancybox="gallery" href="quarto-1.jpg">
+      <img src="quarto-1.jpg" alt="Quarto 1" />
+    </a>
+    <a data-fancybox="gallery" href="quarto-2.jpg">
+      <img src="quarto-2.jpg" alt="Quarto 2" />
+    </a>
+    <a data-fancybox="gallery" href="quarto-3.jpg">
+      <img src="quarto-3.jpg" alt="Quarto 3" />
+    </a>
+    <a data-fancybox="gallery" href="quarto-4.jpg">
+      <img src="quarto-4.jpg" alt="Quarto 4" />
+    </a>
+    <a data-fancybox="gallery" href="quarto-5.jpg">
+      <img src="quarto-5.jpg" alt="Quarto 5" />
+    </a>
+    <a data-fancybox="gallery" href="salao-jogos-1.jpg">
+      <img src="salao-jogos-1.jpg" alt="Salão de Jogos" />
+    </a>
+    <a data-fancybox="gallery" href="sinuca.jpg">
+      <img src="sinuca.jpg" alt="Mesa de Sinuca" />
+    </a>
+    <a data-fancybox="gallery" href="suite-casal-1.jpg">
+      <img src="suite-casal-1.jpg" alt="Suíte Casal 1" />
+    </a>
+    <a data-fancybox="gallery" href="suite-casal-2.jpg">
+      <img src="suite-casal-2.jpg" alt="Suíte Casal 2" />
+    </a>
+    <a data-fancybox="gallery" href="suite-casal-3.jpg">
+      <img src="suite-casal-3.jpg" alt="Suíte Casal 3" />
+    </a>
+    <a data-fancybox="gallery" href="toto.jpg">
+      <img src="toto.jpg" alt="Totó / Pebolim" />
+    </a>
+    <a data-fancybox="gallery" href="vista-1.jpg">
+      <img src="vista-1.jpg" alt="Vista Panorâmica 1" />
+    </a>
+    <a data-fancybox="gallery" href="vista-2.jpg">
+      <img src="vista-2.jpg" alt="Vista Panorâmica 2" />
+    </a>
+    <a data-fancybox="gallery" href="vista-3.jpg">
+      <img src="vista-3.jpg" alt="Vista Panorâmica 3" />
+    </a>
+    <a data-fancybox="gallery" href="vista-4.jpg">
+      <img src="vista-4.jpg" alt="Vista Panorâmica 4" />
+    </a>
+  </div>
+</section>
+  Estamos localizados na Rua das Nascentes, 10 – Vila Nossa Senhora de Fátima, CEP 30230-627, no topo do Aglomerado da Serra, com vista privilegiada de Belo Horizonte
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3773.891240030217!2d-43.903837!3d-19.938345!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDU2JzE4LjAiUyA0M8KwNTQnMTMuOCJX!5e0!3m2!1spt-BR!2sbr!4v1712687770000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+  <section id="contato" data-aos="zoom-in">
+    <h2><i class="fas fa-envelope"></i> Contato e Reservas</h2>
+    <p>Fale conosco via WhatsApp e garanta sua data:</p>
+    <div class="cta">
+      <p>Reserve agora e viva dias incríveis na Casa do Céu!</p>
+      <a href="https://wa.me/5531975655119" target="_blank">Falar no WhatsApp</a>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+<script>
+  const bgVideo = document.getElementById('bg-video');
+  bgVideo.addEventListener('ended', () => {
+    bgVideo.currentTime = 0;
+    bgVideo.play();
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 'auto',
+    spaceBetween: 15,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+</body>
+</html>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Casa do Céu</title>

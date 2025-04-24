@@ -1,11 +1,14 @@
+
+
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agendamento - Casa do Céu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agendamento - Casa do Céu</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&amp;family=Quicksand:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Quicksand', sans-serif;
@@ -69,28 +72,48 @@
       padding: 1rem;
       margin-top: 3rem;
     }
-  </style>
+  
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  nav a {
+    font-size: 0.9rem;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  header p {
+    font-size: 1rem;
+  }
+  .form-container {
+    padding: 1rem;
+  }
+  iframe {
+    height: 1500px;
+  }
+}
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="index.html#sobre">Sobre</a>
-    <a href="index.html#galeria">Galeria</a>
-    <a href="/agendamento">Agendamento</a>
-    <a href="index.html#contato">Contato</a>
-  </nav>
-
-  <header>
-    <h1>Agendamento</h1>
-    <p>Escolha sua data e envie suas informações para reservar sua experiência na Casa do Céu.</p>
-  </header>
-
-  <div class="form-container">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdcFlLbvC81DAsDUWkSBg7Z-JXYI8LP04abzqsN9XNxXIpbCQ/viewform?embedded=true" loading="lazy">Carregando…</iframe>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
-  </footer>
+<nav>
+<a href="../index.html">Início</a>
+<a href="../index.html#sobre">Sobre</a>
+<a href="../index.html#galeria">Galeria</a>
+<a href="/agendamento">Agendamento</a>
+<a href="../index.html#contato">Contato</a>
+</nav>
+<header>
+<h1>Agendamento</h1>
+<p>Escolha sua data e envie suas informações para reservar sua experiência na Casa do Céu.</p>
+</header>
+<div class="form-container">
+<iframe loading="lazy" src="https://docs.google.com/forms/d/e/1FAIpQLSdcFlLbvC81DAsDUWkSBg7Z-JXYI8LP04abzqsN9XNxXIpbCQ/viewform?embedded=true">Carregando…</iframe>
+</div>
+<footer>
+<p>© 2025 Casa do Céu. Todos os direitos reservados.</p>
+</footer>
 </body>
 </html>

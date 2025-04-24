@@ -1,99 +1,207 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agendamento | Casa do Céu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa do Céu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Quicksand', sans-serif;
-      margin: 0;
-      background-color: #f0f4fa;
-      color: #333;
+      background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #222;
+      padding-top: 80px;
     }
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255,255,255,0.9);
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
       padding: 1rem;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      z-index: 999;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
     }
     nav a {
       text-decoration: none;
       color: #0077cc;
       font-weight: bold;
-      font-size: 0.95rem;
+      font-size: 1rem;
       transition: color 0.3s;
     }
     nav a:hover {
       color: #005fa3;
     }
     header {
-      background-color: #1b2a49;
+      background: linear-gradient(to bottom, rgba(168,224,255,0.9), rgba(0,119,204,0.8));
       color: white;
       text-align: center;
-      padding: 6rem 1rem 2rem;
-      margin-top: 60px;
+      padding: 6rem 1rem 3rem;
+      position: relative;
+      animation: fadeIn 2s ease;
+    }
+    header .clouds {
+      background: url('https://svgshare.com/i/xW_.svg') repeat-x;
+      background-size: contain;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0.2;
+      animation: moveClouds 60s linear infinite;
+      z-index: 0;
+    }
+    @keyframes moveClouds {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 10000px; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     header img {
-      max-width: 160px;
+      max-width: 300px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      animation: zoomFade 1.5s ease;
+    }
+    @keyframes zoomFade {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    header p {
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+    section {
+      padding: 4rem 1rem;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
+      background-color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s ease;
+    }
+    section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      color: #0077cc;
       margin-bottom: 1rem;
     }
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    iframe {
+    .swiper {
       width: 100%;
-      border: none;
+      padding: 2rem 0;
+    }
+    .swiper-slide {
+      width: auto;
+    }
+    .swiper-slide img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .swiper-slide img:hover {
+      transform: scale(1.05);
+    }
+    .cta {
+      background-color: #0077cc;
+      color: white;
+      padding: 2rem;
       border-radius: 12px;
-      margin: 2rem 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 3rem;
+      animation: fadeIn 2s ease;
     }
-    .calendar-frame {
-      height: 600px;
-    }
-    .form-frame {
-      height: 1850px;
+    .cta a {
+      background-color: white;
+      color: #0077cc;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      margin-top: 1rem;
+      display: inline-block;
     }
     footer {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #666;
+      background: #000;
+      color: #ccc;
       padding: 1rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <nav>
-    <a href="/casadoceu/#sobre">Sobre</a>
-    <a href="/casadoceu/#galeria">Galeria</a>
-    <a href="/casadoceu/agendamento/">Agendamento</a>
-    <a href="/casadoceu/#contato">Contato</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#galeria">Galeria</a>
+    <a href="/agendamento" target="_blank">Agendamento</a>
+    <a href="#contato">Contato</a>
   </nav>
 
   <header>
-    <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
-    <h1>Agendamento de Reserva</h1>
+    <div class="clouds"></div>
+    <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu" />
+    <h1>Bem-vindo à Casa do Céu</h1>
+    <p>O refúgio ideal para descanso, lazer e momentos inesquecíveis</p>
   </header>
 
-  <main style="padding: 0 1rem; max-width: 900px; margin: auto;">
-    <h2 style="text-align:center;">📅 Disponibilidade</h2>
-    <iframe class="calendar-frame" src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&ctz=America%2FSao_Paulo" loading="lazy"></iframe>
+  <section id="sobre">
+    <h2>Sobre</h2>
+    <p>Localizada no topo das montanhas de BH, a Casa do Céu oferece piscina, hidromassagem, salão de jogos e vista espetacular. Tudo pensado para seu descanso e lazer.</p>
+  </section>
 
-    <h2 style="text-align:center;">📝 Solicitação de Reserva</h2>
-    <iframe class="form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSdcFlLbvC81DAsDUWkSBg7Z-JXYI8LP04abzqsN9XNxXIpbCQ/viewform?embedded=true" loading="lazy">Carregando…</iframe>
-  </main>
+  <section id="galeria">
+    <h2>Galeria</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="piscina.jpg" alt="Piscina" /></div>
+        <div class="swiper-slide"><img src="quarto-1.jpg" alt="Quarto" /></div>
+        <div class="swiper-slide"><img src="salao-jogos-1.jpg" alt="Salão de Jogos" /></div>
+        <div class="swiper-slide"><img src="vista-1.jpg" alt="Vista" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <div class="cta">
+      <p>Reserve agora e viva momentos incríveis na Casa do Céu!</p>
+      <a href="https://wa.me/5531975655119" target="_blank">Fale conosco no WhatsApp</a>
+    </div>
+  </section>
 
   <footer>
-    © 2025 Casa do Céu • Toda BH da nossa janela ✨
+    <p>&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.mySwiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 15,
+      freeMode: true,
+      loop: true
+    });
+  </script>
 </body>
 </html>

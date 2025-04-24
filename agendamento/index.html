@@ -239,10 +239,40 @@ header p {
   right: 20px;
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
+
+header {
+  background-image: url('imagem-fundo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+header h1, header p {
+  color: white;
+}
+nav {
+  background: transparent;
+  border-bottom: none;
+}
+
+nav {
+  background: rgba(255, 255, 255, 0.95); /* Cor sólida para contraste ao rolar */
+  color: #222;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+nav a {
+  color: #0077cc;
+}
+nav a:hover {
+  background-color: #e6f2ff;
+}
+section, footer {
+  color: #222;
+}
 </style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/></head>
 <body>
-<nav><div class="logo-nav"><img alt="Logo Casa do Céu" src="https://i.imgur.com/Tgntdk2.png" style="height: 40px;"/></div>
+<nav><div class="logo-nav"></div>
 <a href="index.html#sobre">Sobre</a>
 <a href="index.html#galeria">Galeria</a>
 <a href="/agendamento">Agendamento</a>
@@ -250,10 +280,10 @@ header p {
 </nav>
 <header>
 <div class="logo-header">
-<img alt="Logo Casa do Céu" src="https://i.imgur.com/Tgntdk2.png"/>
+
 </div>
-<h1>Agendamento</h1>
-<p>Escolha sua data e envie suas informações para reservar sua experiência na Casa do Céu.</p>
+<h1 style="color: #003366;">Agendamento</h1>
+<p style="color: #003366;">Escolha sua data e envie suas informações para reservar sua experiência na Casa do Céu.</p>
 </header>
 <div class="form-container"><p style="text-align:center; font-size:1.1rem; margin-bottom:1rem; color: #333;">Veja abaixo os dias já reservados e os que estão disponíveis para agendamento:</p><div class="calendar-embed">
 <iframe frameborder="0" loading="lazy" scrolling="no" src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&amp;ctz=America%2FSao_Paulo"></iframe>
@@ -267,5 +297,5 @@ header p {
 <footer>
 <p>© 2025 Casa do Céu. Todos os direitos reservados.</p>
 </footer>
-<a class="whatsapp-float" href="https://wa.me/5531975655119" target="_blank"><i class="fab fa-whatsapp"></i></a><a class="instagram-float" href="https://instagram.com/casadoceubh" target="_blank"><i class="fab fa-instagram"></i></a></body>
+</body>
 </html>

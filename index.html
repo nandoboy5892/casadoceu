@@ -1,21 +1,24 @@
 
 
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casa do Céu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Casa do Céu</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&amp;family=Quicksand:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+<style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Quicksand', sans-serif;
+      background-color: #f5f8fb;
+      background-image: none !important;
       background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #222;
+      color: #333;
       padding-top: 80px;
     }
     nav {
@@ -42,7 +45,8 @@
       color: #005fa3;
     }
     header {
-      background: linear-gradient(to bottom, rgba(168,224,255,0.9), rgba(0,119,204,0.8));
+      background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center;
+      background-size: cover;
       color: white;
       text-align: center;
       padding: 6rem 1rem 3rem;
@@ -90,7 +94,11 @@
       z-index: 1;
     }
     section {
-      padding: 4rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 2rem;
       text-align: center;
       max-width: 1000px;
       margin: auto;
@@ -151,51 +159,45 @@
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#galeria">Galeria</a>
-    <a href="/agendamento" target="_blank">Agendamento</a>
-    <a href="#contato">Contato</a>
-  </nav>
-
-  <header>
-    <div class="clouds"></div>
-    <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu" />
-    <h1>Bem-vindo à Casa do Céu</h1>
-    <p>O refúgio ideal para descanso, lazer e momentos inesquecíveis</p>
-  </header>
-
-  <section id="sobre">
-    <h2>Sobre</h2>
-    <p>Localizada no topo das montanhas de BH, a Casa do Céu oferece piscina, hidromassagem, salão de jogos e vista espetacular. Tudo pensado para seu descanso e lazer.</p>
-  </section>
-
-  <section id="galeria">
-    <h2>Galeria</h2>
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="piscina.jpg" alt="Piscina" /></div>
-        <div class="swiper-slide"><img src="quarto-1.jpg" alt="Quarto" /></div>
-        <div class="swiper-slide"><img src="salao-jogos-1.jpg" alt="Salão de Jogos" /></div>
-        <div class="swiper-slide"><img src="vista-1.jpg" alt="Vista" /></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contato">
-    <h2>Contato</h2>
-    <div class="cta">
-      <p>Reserve agora e viva momentos incríveis na Casa do Céu!</p>
-      <a href="https://wa.me/5531975655119" target="_blank">Fale conosco no WhatsApp</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
+<nav>
+<a href="#sobre">Sobre</a>
+<a href="#galeria">Galeria</a>
+<a href="/agendamento" target="_blank">Agendamento</a>
+<a href="#contato">Contato</a>
+</nav>
+<header>
+<div class="clouds"></div>
+<img alt="Logo Casa do Céu" src="https://i.imgur.com/Tgntdk2.png"/>
+<h1>Bem-vindo à Casa do Céu</h1>
+<p>O refúgio ideal para descanso, lazer e momentos inesquecíveis</p>
+</header>
+<section id="sobre">
+<h2>Sobre</h2>
+<p>Localizada no topo das montanhas de BH, a Casa do Céu oferece piscina, hidromassagem, salão de jogos e vista espetacular. Tudo pensado para seu descanso e lazer.</p>
+</section>
+<section id="galeria">
+<h2>Galeria</h2>
+<div class="swiper mySwiper">
+<div class="swiper-wrapper">
+<div class="swiper-slide"><img alt="Piscina" src="piscina.jpg"/></div>
+<div class="swiper-slide"><img alt="Quarto" src="quarto-1.jpg"/></div>
+<div class="swiper-slide"><img alt="Salão de Jogos" src="salao-jogos-1.jpg"/></div>
+<div class="swiper-slide"><img alt="Vista" src="vista-1.jpg"/></div>
+<div class="swiper-slide"><img alt="Piscina" src="piscina.jpg"/></div><div class="swiper-slide"><img alt="Quarto 1" src="quarto-1.jpg"/></div><div class="swiper-slide"><img alt="Salao jogos 1" src="salao-jogos-1.jpg"/></div><div class="swiper-slide"><img alt="Vista 1" src="vista-1.jpg"/></div><div class="swiper-slide"><img alt="Quarto 2" src="quarto-2.jpg"/></div><div class="swiper-slide"><img alt="Quarto 3" src="quarto-3.jpg"/></div><div class="swiper-slide"><img alt="Suite casal 1" src="suite-casal-1.jpg"/></div><div class="swiper-slide"><img alt="Suite casal 2" src="suite-casal-2.jpg"/></div></div>
+</div>
+</section>
+<section id="contato">
+<h2>Contato</h2>
+<div class="cta">
+<p>Reserve agora e viva momentos incríveis na Casa do Céu!</p>
+<a href="https://wa.me/5531975655119" target="_blank">Fale conosco no WhatsApp</a>
+</div>
+</section>
+<footer>
+<p>© 2025 Casa do Céu. Todos os direitos reservados.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
     const swiper = new Swiper('.mySwiper', {
       slidesPerView: 'auto',
       spaceBetween: 15,

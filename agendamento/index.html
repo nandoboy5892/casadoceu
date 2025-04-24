@@ -99,25 +99,173 @@
     height: 1500px;
   }
 }
-</style>
-</head>
-<body>
-<nav>
 
+.agendamento-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.agendamento-grid iframe {
+  width: 100%;
+  min-height: 1500px;
+  border-radius: 8px;
+  border: none;
+}
+.form-embed, .calendar-embed {
+  flex: 1 1 450px;
+  max-width: 100%;
+}
+@media (max-width: 768px) {
+  .agendamento-grid {
+    flex-direction: column;
+  }
+  .agendamento-grid iframe {
+    min-height: 1300px;
+  }
+}
+
+header {
+  background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center/cover;
+  color: white;
+}
+
+.calendar-embed iframe {
+  min-height: 500px !important;
+  max-height: 600px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+}
+
+body {
+  background-color: #e6f0fa;
+  color: #222;
+}
+header {
+  background: linear-gradient(to bottom, #cfe8ff, #a8d0f0);
+  color: #222;
+}
+header h1, header p {
+  color: #222;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 6rem 1rem 3rem;
+}
+.logo-header {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+.logo-header img {
+  max-width: 120px;
+}
+nav {
+  font-size: 1rem;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+nav a {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+nav a:hover {
+  background-color: #dceeff;
+}
+section {
+  background: white;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  padding: 3rem 1rem;
+}
+footer {
+  background: #003366;
+  color: #fff;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.logo-nav {
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+}
+header h1 {
+  font-size: 3rem;
+  margin-top: 1rem;
+}
+header p {
+  font-size: 1.3rem;
+}
+@media (max-width: 768px) {
+  .logo-nav {
+    position: relative;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.whatsapp-float, .instagram-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 999;
+  text-decoration: none;
+}
+.whatsapp-float {
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+}
+.instagram-float {
+  bottom: 90px;
+  right: 20px;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/></head>
+<body>
+<nav><div class="logo-nav"><img alt="Logo Casa do Céu" src="https://i.imgur.com/Tgntdk2.png" style="height: 40px;"/></div>
 <a href="index.html#sobre">Sobre</a>
 <a href="index.html#galeria">Galeria</a>
 <a href="/agendamento">Agendamento</a>
 <a href="index.html#contato">Contato</a>
 </nav>
 <header>
+<div class="logo-header">
+<img alt="Logo Casa do Céu" src="https://i.imgur.com/Tgntdk2.png"/>
+</div>
 <h1>Agendamento</h1>
 <p>Escolha sua data e envie suas informações para reservar sua experiência na Casa do Céu.</p>
 </header>
-<div class="form-container">
+<div class="form-container"><p style="text-align:center; font-size:1.1rem; margin-bottom:1rem; color: #333;">Veja abaixo os dias já reservados e os que estão disponíveis para agendamento:</p><div class="calendar-embed">
+<iframe frameborder="0" loading="lazy" scrolling="no" src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&amp;ctz=America%2FSao_Paulo"></iframe>
+</div>
+<div class="agendamento-grid">
+<div class="form-embed">
 <iframe loading="lazy" src="https://docs.google.com/forms/d/e/1FAIpQLSdcFlLbvC81DAsDUWkSBg7Z-JXYI8LP04abzqsN9XNxXIpbCQ/viewform?embedded=true">Carregando…</iframe>
+</div>
+</div>
 </div>
 <footer>
 <p>© 2025 Casa do Céu. Todos os direitos reservados.</p>
 </footer>
-</body>
+<a class="whatsapp-float" href="https://wa.me/5531975655119" target="_blank"><i class="fab fa-whatsapp"></i></a><a class="instagram-float" href="https://instagram.com/casadoceubh" target="_blank"><i class="fab fa-instagram"></i></a></body>
 </html>

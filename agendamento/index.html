@@ -75,21 +75,25 @@
   
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
   }
   nav a {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   header p {
     font-size: 1rem;
+    padding: 0 1rem;
   }
   .form-container {
-    padding: 1rem;
+    padding: 1.5rem;
+    margin: 1rem;
   }
   iframe {
     height: 1500px;
@@ -99,11 +103,11 @@
 </head>
 <body>
 <nav>
-<a href="../index.html">Início</a>
-<a href="../index.html#sobre">Sobre</a>
-<a href="../index.html#galeria">Galeria</a>
+
+<a href="index.html#sobre">Sobre</a>
+<a href="index.html#galeria">Galeria</a>
 <a href="/agendamento">Agendamento</a>
-<a href="../index.html#contato">Contato</a>
+<a href="index.html#contato">Contato</a>
 </nav>
 <header>
 <h1>Agendamento</h1>

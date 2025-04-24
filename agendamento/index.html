@@ -4,18 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agendamento | Casa do Céu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Quicksand', sans-serif;
       margin: 0;
       background-color: #f0f4fa;
       color: #333;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+    nav a {
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #005fa3;
     }
     header {
       background-color: #1b2a49;
       color: white;
       text-align: center;
-      padding: 2rem;
+      padding: 6rem 1rem 2rem;
+      margin-top: 60px;
     }
     header img {
       max-width: 160px;
@@ -23,7 +48,7 @@
     }
     h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
     iframe {
       width: 100%;
@@ -47,23 +72,28 @@
   </style>
 </head>
 <body>
+  <nav>
+    <a href="/casadoceu/#sobre">Sobre</a>
+    <a href="/casadoceu/#galeria">Galeria</a>
+    <a href="/casadoceu/agendamento/">Agendamento</a>
+    <a href="/casadoceu/#contato">Contato</a>
+  </nav>
 
-<header>
-  <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
-  <h1>Agendamento de Reserva</h1>
-</header>
+  <header>
+    <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
+    <h1>Agendamento de Reserva</h1>
+  </header>
 
-<main style="padding: 0 1rem; max-width: 900px; margin: auto;">
-  <h2 style="text-align:center;">📅 Disponibilidade</h2>
-  <iframe class="calendar-frame" src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&ctz=America%2FSao_Paulo" loading="lazy"></iframe>
+  <main style="padding: 0 1rem; max-width: 900px; margin: auto;">
+    <h2 style="text-align:center;">📅 Disponibilidade</h2>
+    <iframe class="calendar-frame" src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&ctz=America%2FSao_Paulo" loading="lazy"></iframe>
 
-  <h2 style="text-align:center;">📝 Solicitação de Reserva</h2>
-  <iframe class="form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSdcFlLbvC81DAsDUWkSBg7Z-JXYI8LP04abzqsN9XNxXIpbCQ/viewform?embedded=true" loading="lazy">Carregando…</iframe>
-</main>
+    <h2 style="text-align:center;">📝 Solicitação de Reserva</h2>
+    <iframe class="form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSdcFlLbvC81DAsDUWkSBg7Z-JXYI8LP04abzqsN9XNxXIpbCQ/viewform?embedded=true" loading="lazy">Carregando…</iframe>
+  </main>
 
-<footer>
-  © 2025 Casa do Céu • Toda BH da nossa janela ✨
-</footer>
-
+  <footer>
+    © 2025 Casa do Céu • Toda BH da nossa janela ✨
+  </footer>
 </body>
 </html>

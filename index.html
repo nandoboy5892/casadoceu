@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casa do Céu</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Agendamento | Casa do Céu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
   <style>
     body {
-      padding-top: 80px;
-      overflow-x: hidden;
       font-family: 'Quicksand', sans-serif;
-      background-color: #ffffff;
-      color: #222;
+      margin: 0;
+      background-color: #f0f4fa;
+      color: #333;
     }
     nav {
       position: fixed;
@@ -38,187 +32,68 @@
       font-size: 0.95rem;
       transition: color 0.3s;
     }
-    nav a:hover { color: #005fa3; }
+    nav a:hover {
+      color: #005fa3;
+    }
     header {
-      background: linear-gradient(to bottom, #a8e0ff, #0077cc);
+      background-color: #1b2a49;
       color: white;
       text-align: center;
-      padding: 10rem 1rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    header .clouds {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://svgshare.com/i/xW_.svg') repeat-x;
-      background-size: contain;
-      animation: moveClouds 60s linear infinite;
-      opacity: 0.3;
-      z-index: 1;
-    }
-    @keyframes moveClouds {
-      from { background-position-x: 0; }
-      to { background-position-x: 10000px; }
+      padding: 6rem 1rem 2rem;
+      margin-top: 60px;
     }
     header img {
-      max-width: 320px;
-      margin-bottom: 1.5rem;
-      z-index: 3;
-      position: relative;
-      animation: zoomFade 1.6s ease forwards;
-    }
-    @keyframes zoomFade {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    header h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 3.2rem;
-      margin-bottom: 0.5rem;
-      z-index: 3;
-      position: relative;
-    }
-    header p {
-      font-size: 1.3rem;
-      z-index: 3;
-      position: relative;
-    }
-    .scroll-down {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      color: white;
-      animation: bounce 2s infinite;
-      z-index: 3;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(10px); }
-    }
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    section h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 3rem;
+      max-width: 160px;
       margin-bottom: 1rem;
-      color: #0077cc;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      padding: 1rem;
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
     }
-    .gallery a {
-      flex: 1 1 calc(25% - 20px);
-      max-width: 300px;
-      box-sizing: border-box;
-    }
-    .gallery img {
+    iframe {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    .cta {
-      background-color: #0077cc;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 2rem;
+      border: none;
       border-radius: 12px;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .cta a {
-      background-color: white;
-      color: #0077cc;
-      padding: 1rem 2rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 1rem;
+    .calendar-frame {
+      height: 600px;
     }
-    .cta a:hover {
-      background-color: #005fa3;
-      color: white;
-      transform: scale(1.05);
+    .form-frame {
+      height: 1850px;
     }
     footer {
-      background-color: #000;
-      color: #ccc;
       text-align: center;
+      font-size: 0.85rem;
+      color: #666;
       padding: 1rem;
-      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#galeria">Galeria</a>
-    <a href="/agendamento/" target="_blank">Agendamento</a>
-    <a href="#contato">Contato</a>
+    <a href="/casadoceu/#sobre">Sobre</a>
+    <a href="/casadoceu/#galeria">Galeria</a>
+    <a href="/casadoceu/agendamento/">Agendamento</a>
+    <a href="/casadoceu/#contato">Contato</a>
   </nav>
+
   <header>
-    <div class="clouds"></div>
     <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
-    <h1>Bem-vindo à Casa do Céu</h1>
-    <p>O refúgio ideal para descanso, lazer e momentos inesquecíveis</p>
-    <div class="scroll-down">&#8595;</div>
+    <h1>Agendamento de Reserva</h1>
   </header>
-  <section id="sobre">
-    <h2>Sobre a Casa</h2>
-    <p>Localizada no topo das montanhas de Belo Horizonte, a Casa do Céu oferece uma experiência única com piscina, jacuzzi, salão de jogos, vista panorâmica e muito mais.</p>
-  </section>
-  <section id="galeria">
-    <h2>Galeria de Fotos</h2>
-    <div class="gallery">
-      <a data-fancybox="gallery" href="cascata.jpg"><img src="cascata.jpg" alt="Cascata"></a>
-      <a data-fancybox="gallery" href="fliperama.jpg"><img src="fliperama.jpg" alt="Fliperama"></a>
-      <a data-fancybox="gallery" href="hidro-1.jpg"><img src="hidro-1.jpg" alt="Hidromassagem"></a>
-      <a data-fancybox="gallery" href="neon.jpg"><img src="neon.jpg" alt="Letreiro de Neon"></a>
-      <a data-fancybox="gallery" href="piscina.jpg"><img src="piscina.jpg" alt="Piscina"></a>
-      <a data-fancybox="gallery" href="quarto-1.jpg"><img src="quarto-1.jpg" alt="Quarto"></a>
-      <a data-fancybox="gallery" href="suite-casal-1.jpg"><img src="suite-casal-1.jpg" alt="Suíte Casal"></a>
-      <a data-fancybox="gallery" href="vista-1.jpg"><img src="vista-1.jpg" alt="Vista"></a>
-    </div>
-  </section>
-  <section id="contato">
-    <h2>Contato</h2>
-    <p>Fale conosco via WhatsApp e garanta sua data:</p>
-    <div class="cta">
-      <p>Reserve agora e viva dias incríveis na Casa do Céu!</p>
-      <a href="https://wa.me/5531975655119" target="_blank">Falar no WhatsApp</a>
-    </div>
-  </section>
+
+  <main style="padding: 0 1rem; max-width: 900px; margin: auto;">
+    <h2 style="text-align:center;">📅 Disponibilidade</h2>
+    <iframe class="calendar-frame" src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&ctz=America%2FSao_Paulo" loading="lazy"></iframe>
+
+    <h2 style="text-align:center;">📝 Solicitação de Reserva</h2>
+    <iframe class="form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSdcFlLbvC81DAsDUWkSBg7Z-JXYI8LP04abzqsN9XNxXIpbCQ/viewform?embedded=true" loading="lazy">Carregando…</iframe>
+  </main>
+
   <footer>
-    <p>&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
+    © 2025 Casa do Céu • Toda BH da nossa janela ✨
   </footer>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 </body>
 </html>

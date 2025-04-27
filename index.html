@@ -3,202 +3,794 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casa do Céu</title>
-
-  <!-- Fontes e estilos externos -->
+  <title>Casa do Céu - Refúgio nas Montanhas</title>
+  
+  <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { background-color: #fff; font-family: 'Quicksand', sans-serif; color: #222; }
-
+    :root {
+      --primary: #0077cc;
+      --primary-dark: #005fa3;
+      --secondary: #25d366;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --white: #ffffff;
+      --overlay: rgba(0, 0, 0, 0.6);
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-color: var(--light);
+    }
+    
+    /* Tipografia */
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    
+    /* Navegação */
     nav {
-      position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95);
-      display: flex; justify-content: center; gap: 2rem; padding: 1rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 999;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      z-index: 1000;
     }
-    nav a {
-      text-decoration: none; color: #0077cc; font-weight: bold; font-size: 0.95rem; transition: color 0.3s;
+    
+    .nav-container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+      align-items: center;
     }
-    nav a:hover { color: #005fa3; }
-
-    header {
-      background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center/cover;
-      color: white;
-      text-align: center;
-      padding: 10rem 1rem 5rem;
+    
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .nav-logo img {
+      height: 30px;
+      width: auto;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
       position: relative;
-      overflow: hidden;
     }
-    header .overlay {
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
       position: absolute;
-      top: 0; left: 0;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Cabeçalho Hero */
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                  url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center/cover;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      padding: 0 1.5rem;
+      position: relative;
+      margin-top: 0;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      animation: fadeInUp 1s ease;
+    }
+    
+    header img {
+      max-width: 280px;
+      width: 100%;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+    
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+    
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--white);
+      margin-left: 1rem;
+    }
+    
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Seções */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      color: var(--primary);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--primary);
+      border-radius: 2px;
+    }
+    
+    /* Sobre */
+    #sobre {
+      background-color: var(--white);
+    }
+    
+    /* Galeria */
+    #galeria {
+      background-color: var(--light);
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      aspect-ratio: 4/3;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .gallery-item img {
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 1;
+      object-fit: cover;
+      transition: var(--transition);
     }
-    header img, header h1, header p {
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    /* Pacotes */
+    #pacotes {
+      background-color: var(--white);
+    }
+    
+    .packages-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .package-card {
+      background-color: var(--light);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+    }
+    
+    .package-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .package-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .package-card .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 1rem 0;
+    }
+    
+    .package-card ul {
+      list-style: none;
+      text-align: left;
+      margin: 1.5rem 0;
+    }
+    
+    .package-card ul li {
+      margin-bottom: 0.5rem;
       position: relative;
-      z-index: 2;
+      padding-left: 1.5rem;
     }
-    header img {
-      max-width: 320px;
+    
+    .package-card ul li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+    
+    /* Localização */
+    #localizacao {
+      background-color: var(--light);
+    }
+    
+    .map-container {
+      width: 100%;
+      height: 400px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+    }
+    
+    /* Contato */
+    #contato {
+      background-color: var(--white);
+      text-align: center;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .contact-item i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    
+    /* Rodapé */
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
       margin-bottom: 1.5rem;
-      animation: zoomFade 1.6s ease forwards;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    @keyframes zoomFade {
-      from {opacity: 0; transform: scale(0.8);}
-      to {opacity: 1; transform: scale(1);}
+    
+    .footer-logo img {
+      height: 30px;
+      width: auto;
     }
-    header h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; margin-bottom: 0.5rem; }
-    header p { font-size: 1.2rem; }
-
-    section {
-      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-      align-items: center; text-align: center; padding: 3rem 1rem; max-width: 1000px; margin: auto;
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
-    section h2 {
-      font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: #0077cc; margin-bottom: 1rem;
+    
+    .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+      transition: var(--transition);
     }
-    section p { font-size: 1.1rem; max-width: 700px; }
-
-    .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
-    .swiper-wrapper { display: flex; }
-    .swiper-slide {
-      width: auto; display: flex; justify-content: center; align-items: center;
+    
+    .footer-links a:hover {
+      color: var(--primary);
     }
-    .swiper-slide img {
-      width: 300px; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer;
-      transition: transform 0.3s ease;
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
-    .swiper-slide img:hover { transform: scale(1.05); }
-
-    .whatsapp-float, .instagram-float {
-      position: fixed; bottom: 20px; width: 60px; height: 60px;
-      display: flex; justify-content: center; align-items: center; border-radius: 50%;
-      font-size: 28px; color: white; text-decoration: none; z-index: 999;
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      transition: var(--transition);
     }
-    .whatsapp-float { right: 20px; background: #25d366; }
-    .instagram-float { right: 90px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-    .whatsapp-float i, .instagram-float i { font-size: 30px; }
-
-    footer { background: #000; color: #ccc; text-align: center; padding: 1rem; font-size: 0.9rem; }
+    
+    .social-links a:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      margin-top: 2rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    /* Botões flutuantes */
+    .float-btn {
+      position: fixed;
+      bottom: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--white);
+      text-decoration: none;
+      z-index: 100;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .float-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+    }
+    
+    .whatsapp {
+      right: 2rem;
+      background-color: var(--secondary);
+    }
+    
+    .instagram {
+      right: 5.5rem;
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+    
+    /* Animações */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsividade */
+    @media (max-width: 992px) {
+      header h1 {
+        font-size: 2.4rem;
+      }
+      
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      header {
+        min-height: 500px;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      header p {
+        font-size: 1rem;
+      }
+      
+      .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .float-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+      
+      .whatsapp {
+        right: 1rem;
+      }
+      
+      .instagram {
+        right: 4rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .btn-outline {
+        margin-left: 0;
+      }
+      
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .packages-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-logo {
+        font-size: 1.2rem;
+      }
+      
+      .footer-logo img {
+        height: 25px;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Navegação -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
+        <span>Casa do Céu</span>
+      </a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#pacotes">Pacotes</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#contato">Contato</a>
+        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank">Agendamento</a>
+      </div>
+    </div>
+  </nav>
 
-<nav>
-  <a href="#sobre">Sobre</a>
-  <a href="#galeria">Galeria</a>
-  <a href="#pacotes">Pacotes</a>
-  <a href="#localizacao">Localização</a>
-  <a href="#contato">Contato</a>
-  <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank">Agendamento</a>
-</nav>
+  <!-- Cabeçalho Hero -->
+  <header>
+    <div class="hero-content">
+      <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
+      <h1>Bem-vindo à Casa do Céu</h1>
+      <p>Seu refúgio entre o céu e as montanhas</p>
+      <div class="hero-buttons">
+        <a href="#pacotes" class="btn">Conheça Nossos Pacotes</a>
+        <a href="#contato" class="btn btn-outline">Fale Conosco</a>
+      </div>
+    </div>
+  </header>
 
+  <!-- Seção Sobre -->
+  <section id="sobre">
+    <h2 class="section-title">Sobre a Casa</h2>
+    <p>No topo das montanhas de Belo Horizonte, a Casa do Céu foi criada para ser um refúgio de tranquilidade e conexão.</p>
+    <p>Pensada para receber famílias, amigos e celebrar momentos especiais, nossa casa é o lugar perfeito tanto para aniversários quanto para aquele merecido descanso após uma semana corrida.</p>
+    <p>Equipado para o seu conforto, o espaço oferece uma jacuzzi relaxante, piscina aquecida, salão de jogos, Wi-Fi, além de 4 quartos acolhedores que acomodam com conforto até 40 pessoas.</p>
+    <p>Cada detalhe foi pensado para que sua experiência seja leve, inesquecível e cheia de boas memórias.</p>
+  </section>
 
-<a class="whatsapp-float" href="https://wa.me/5531975746489" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<a class="instagram-float" href="https://instagram.com/casadoceubh" target="_blank"><i class="fab fa-instagram"></i></a>
+  <!-- Seção Galeria -->
+  <section id="galeria">
+    <h2 class="section-title">Galeria de Fotos</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidro 1">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidro 2">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical">
+      </div>
+      <div class="gallery-item">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Neon">
+      </div>
+    </div>
+  </section>
 
-<header>
-  <div class="overlay"></div>
-  <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
-  <h1>Bem-vindo à Casa do Céu</h1>
-  <p>Seu refúgio entre o céu e as montanhas</p>
-</header>
+  <!-- Seção Pacotes -->
+  <section id="pacotes">
+    <h2 class="section-title">Nossos Pacotes</h2>
+    <div class="packages-container">
+      <div class="package-card">
+        <h3>Day Use</h3>
+        <p>Perfeito para um dia de relaxamento</p>
+        <div class="price">R$ 1.050</div>
+        <ul>
+          <li>Check-in às 09h30</li>
+          <li>Check-out às 20h00</li>
+          <li>Acesso a todas as áreas</li>
+          <li>Capacidade para até 40 pessoas</li>
+        </ul>
+        <a href="#contato" class="btn">Reservar</a>
+      </div>
+      
+      <div class="package-card">
+        <h3>Pacote 3 Dias</h3>
+        <p>Experiência completa de descanso</p>
+        <div class="price">R$ 900/diária</div>
+        <ul>
+          <li>Check-in às 14h</li>
+          <li>Check-out às 12h</li>
+          <li>3 dias e 2 noites</li>
+          <li>Capacidade para até 40 pessoas</li>
+        </ul>
+        <a href="#contato" class="btn">Reservar</a>
+      </div>
+    </div>
+  </section>
 
-<section id="sobre" data-aos="fade-up">
-  <h2>Sobre a Casa</h2>
-  <p>No topo das montanhas de Belo Horizonte, a Casa do Céu foi criada para ser um refúgio de tranquilidade e conexão.
+  <!-- Seção Localização -->
+  <section id="localizacao">
+    <h2 class="section-title">Nossa Localização</h2>
+    <p>Rua das Nascentes, nº 10 – Vila Nossa Senhora de Fátima, Belo Horizonte/MG</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps?q=-19.938341,-43.903907&z=15&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
 
-Pensada para receber famílias, amigos e celebrar momentos especiais, nossa casa é o lugar perfeito tanto para aniversários quanto para aquele merecido descanso após uma semana corrida.
+  <!-- Seção Contato -->
+  <section id="contato">
+    <h2 class="section-title">Contato e Reservas</h2>
+    <p>Entre em contato conosco para mais informações ou para reservar sua estadia</p>
+    
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fas fa-phone-alt"></i>
+        <span>(31) 9757-46489</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>contato@casadoceu.com</span>
+      </div>
+    </div>
+    
+    <a href="https://wa.me/5531975746489" class="btn" target="_blank">
+      <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+    </a>
+  </section>
 
-Equipado para o seu conforto, o espaço oferece uma jacuzzi relaxante, piscina aquecida, salão de jogos, Wi-Fi, além de 4 quartos acolhedores que acomodam com conforto até 40 pessoas.
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content">
+      <a href="#" class="footer-logo">
+        <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
+        <span>Casa do Céu</span>
+      </a>
+      
+      <div class="footer-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#pacotes">Pacotes</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#contato">Contato</a>
+        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank">Agendamento</a>
+      </div>
+      
+      <div class="social-links">
+        <a href="https://wa.me/5531975746489" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/casadoceubh" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      
+      <p class="copyright">&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
-Cada detalhe foi pensado para que sua experiência seja leve, inesquecível e cheia de boas memórias.</p>
-</section>
+  <!-- Botões Flutuantes -->
+  <a href="https://wa.me/5531975746489" class="float-btn whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <a href="https://instagram.com/casadoceubh" class="float-btn instagram" target="_blank">
+    <i class="fab fa-instagram"></i>
+  </a>
 
-<section id="galeria" data-aos="fade-up">
-  <h2>Galeria de Fotos</h2>
-  <div class="swiper mySwiper">
-   <div class="swiper-wrapper">
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidro 1"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidro 2"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Neon"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/piscina.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/piscina.jpg" alt="Piscina"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-1.jpg" alt="Quarto 1"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-2.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-2.jpg" alt="Quarto 2"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-3.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-3.jpg" alt="Quarto 3"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-4.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-4.jpg" alt="Quarto 4"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-5.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-5.jpg" alt="Quarto 5"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/salao-jogos-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/salao-jogos-1.jpg" alt="Salão de Jogos"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/sinuca.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/sinuca.jpg" alt="Mesa de Sinuca"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-1.jpg" alt="Suíte Casal 1"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-2.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-2.jpg" alt="Suíte Casal 2"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-3.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-3.jpg" alt="Suíte Casal 3"></a></div>
-  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/toto.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/toto.jpg" alt="Totó"></a></div>
-</div>
-
-</section>
-
-<section id="pacotes" data-aos="fade-up">
-  <h2>Pacotes</h2>
-  <p><strong>Day Use:</strong> R$ 1.050 (Check-in às 09h30 | Check-out às 20h00)</p>
-  <p><strong>Pacote 3 dias:</strong> R$ 900 por diária</p>
-</section>
-
-<section id="localizacao" data-aos="fade-up">
-  <h2>Localização</h2>
-  <p>Rua das Nascentes, nº 10 – Vila Nossa Senhora de Fátima, Belo Horizonte/MG</p>
-  <iframe src="https://www.google.com/maps?q=-19.938341,-43.903907&z=15&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-</section>
-
-<section id="contato" data-aos="fade-up">
-  <h2>Contato e Reservas</h2>
-  <div class="cta">
-    <p>Fale conosco pelo WhatsApp para reservar sua data!</p>
-    <a href="https://wa.me/5531975746489" target="_blank" style="background-color:#0077cc;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;">Entrar em Contato</a>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
-</footer>
-
-<!-- Scripts -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-<script>
-  AOS.init({ duration: 1000, once: true });
-  var swiper = new Swiper('.mySwiper', {
-    slidesPerView: 'auto',
-    spaceBetween: 15,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-    loop: true,
-  });
-</script>
-
+  <!-- Script para Lightbox -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Lightbox simples
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      
+      galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const imgSrc = this.querySelector('img').src;
+          const lightbox = document.createElement('div');
+          lightbox.style.position = 'fixed';
+          lightbox.style.top = '0';
+          lightbox.style.left = '0';
+          lightbox.style.width = '100%';
+          lightbox.style.height = '100%';
+          lightbox.style.backgroundColor = 'rgba(0,0,0,0.9)';
+          lightbox.style.display = 'flex';
+          lightbox.style.justifyContent = 'center';
+          lightbox.style.alignItems = 'center';
+          lightbox.style.zIndex = '2000';
+          lightbox.style.cursor = 'zoom-out';
+          
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.style.maxWidth = '90%';
+          img.style.maxHeight = '90%';
+          img.style.objectFit = 'contain';
+          img.style.borderRadius = '8px';
+          
+          lightbox.appendChild(img);
+          document.body.appendChild(lightbox);
+          
+          lightbox.addEventListener('click', function() {
+            document.body.removeChild(lightbox);
+          });
+        });
+      });
+      
+      // Scroll suave para links internos
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

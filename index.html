@@ -1,209 +1,204 @@
-
-
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Casa do Céu</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&amp;family=Quicksand:wght@400;500&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa do Céu</title>
+
+  <!-- Fontes e estilos externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background-color: #f5f8fb;
-      background-image: none !important;
-      background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #333;
-      padding-top: 80px;
-    }
+    html { scroll-behavior: smooth; }
+    body { background-color: #fff; font-family: 'Quicksand', sans-serif; color: #222; }
+
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255,255,255,0.9);
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 1rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      z-index: 1000;
-      backdrop-filter: blur(5px);
+      position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95);
+      display: flex; justify-content: center; gap: 2rem; padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 999;
     }
     nav a {
-      text-decoration: none;
-      color: #0077cc;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: color 0.3s;
+      text-decoration: none; color: #0077cc; font-weight: bold; font-size: 0.95rem; transition: color 0.3s;
     }
-    nav a:hover {
-      color: #005fa3;
-    }
+    nav a:hover { color: #005fa3; }
+
     header {
-      background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center;
-      background-size: cover;
+      background: url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center/cover;
       color: white;
       text-align: center;
-      padding: 6rem 1rem 3rem;
+      padding: 10rem 1rem 5rem;
       position: relative;
-      animation: fadeIn 2s ease;
+      overflow: hidden;
     }
-    header .clouds {
-      background: url('https://svgshare.com/i/xW_.svg') repeat-x;
-      background-size: contain;
+    header .overlay {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: 0.2;
-      animation: moveClouds 60s linear infinite;
-      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
     }
-    @keyframes moveClouds {
-      0% { background-position-x: 0; }
-      100% { background-position-x: 10000px; }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    header img, header h1, header p {
+      position: relative;
+      z-index: 2;
     }
     header img {
-      max-width: 300px;
+      max-width: 320px;
       margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
-      animation: zoomFade 1.5s ease;
+      animation: zoomFade 1.6s ease forwards;
     }
     @keyframes zoomFade {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
     }
-    header h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.8rem;
-      position: relative;
-      z-index: 1;
-    }
-    header p {
-      font-size: 1.2rem;
-      position: relative;
-      z-index: 1;
-    }
+    header h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1.2rem; }
+
     section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 2rem;
-      text-align: center;
-      max-width: 1000px;
-      margin: auto;
-      background-color: rgba(255,255,255,0.9);
-      margin-bottom: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      animation: fadeIn 1.5s ease;
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      align-items: center; text-align: center; padding: 3rem 1rem; max-width: 1000px; margin: auto;
     }
     section h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.5rem;
-      color: #0077cc;
-      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: #0077cc; margin-bottom: 1rem;
     }
-    .swiper {
-      width: 100%;
-      padding: 2rem 0;
-    }
+    section p { font-size: 1.1rem; max-width: 700px; }
+
+    .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
+    .swiper-wrapper { display: flex; }
     .swiper-slide {
-      width: auto;
+      width: auto; display: flex; justify-content: center; align-items: center;
     }
     .swiper-slide img {
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      width: 300px; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .swiper-slide img:hover {
-      transform: scale(1.05);
+    .swiper-slide img:hover { transform: scale(1.05); }
+
+    .whatsapp-float, .instagram-float {
+      position: fixed; bottom: 20px; width: 60px; height: 60px;
+      display: flex; justify-content: center; align-items: center; border-radius: 50%;
+      font-size: 28px; color: white; text-decoration: none; z-index: 999;
     }
-    .cta {
-      background-color: #0077cc;
-      color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      margin-top: 3rem;
-      animation: fadeIn 2s ease;
-    }
-    .cta a {
-      background-color: white;
-      color: #0077cc;
-      padding: 1rem 2rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      margin-top: 1rem;
-      display: inline-block;
-    }
-    footer {
-      background: #000;
-      color: #ccc;
-      padding: 1rem;
-      text-align: center;
-    }
+    .whatsapp-float { right: 20px; background: #25d366; }
+    .instagram-float { right: 90px; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .whatsapp-float i, .instagram-float i { font-size: 30px; }
+
+    footer { background: #000; color: #ccc; text-align: center; padding: 1rem; font-size: 0.9rem; }
   </style>
 </head>
+
 <body>
+
 <nav>
-<a href="#sobre">Sobre</a>
-<a href="#galeria">Galeria</a>
-<a href="/agendamento" target="_blank">Agendamento</a>
-<a href="#contato">Contato</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#pacotes">Pacotes</a>
+  <a href="#localizacao">Localização</a>
+  <a href="#contato">Contato</a>
+  <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank">Agendamento</a>
 </nav>
+
+
+<a class="whatsapp-float" href="https://wa.me/5531975746489" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a class="instagram-float" href="https://instagram.com/casadoceubh" target="_blank"><i class="fab fa-instagram"></i></a>
+
 <header>
-<div class="clouds"></div>
-<img alt="Logo Casa do Céu" src="https://i.imgur.com/Tgntdk2.png"/>
-<h1>Bem-vindo à Casa do Céu</h1>
-<p>O refúgio ideal para descanso, lazer e momentos inesquecíveis</p>
+  <div class="overlay"></div>
+  <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
+  <h1>Bem-vindo à Casa do Céu</h1>
+  <p>Seu refúgio entre o céu e as montanhas</p>
 </header>
-<section id="sobre">
-<h2>Sobre</h2>
-<p>Localizada no topo das montanhas de BH, a Casa do Céu oferece piscina, hidromassagem, salão de jogos e vista espetacular. Tudo pensado para seu descanso e lazer.</p>
+
+<section id="sobre" data-aos="fade-up">
+  <h2>Sobre a Casa</h2>
+  <p>No topo das montanhas de Belo Horizonte, a Casa do Céu foi criada para ser um refúgio de tranquilidade e conexão.
+
+Pensada para receber famílias, amigos e celebrar momentos especiais, nossa casa é o lugar perfeito tanto para aniversários quanto para aquele merecido descanso após uma semana corrida.
+
+Equipado para o seu conforto, o espaço oferece uma jacuzzi relaxante, piscina aquecida, salão de jogos, Wi-Fi, além de 4 quartos acolhedores que acomodam com conforto até 40 pessoas.
+
+Cada detalhe foi pensado para que sua experiência seja leve, inesquecível e cheia de boas memórias.</p>
 </section>
-<section id="galeria">
-<h2>Galeria</h2>
-<div class="swiper mySwiper">
-<div class="swiper-wrapper">
-<div class="swiper-slide"><img alt="Piscina" src="piscina.jpg"/></div>
-<div class="swiper-slide"><img alt="Quarto" src="quarto-1.jpg"/></div>
-<div class="swiper-slide"><img alt="Salão de Jogos" src="salao-jogos-1.jpg"/></div>
-<div class="swiper-slide"><img alt="Vista" src="vista-1.jpg"/></div>
-<div class="swiper-slide"><img alt="Piscina" src="piscina.jpg"/></div><div class="swiper-slide"><img alt="Quarto 1" src="quarto-1.jpg"/></div><div class="swiper-slide"><img alt="Salao jogos 1" src="salao-jogos-1.jpg"/></div><div class="swiper-slide"><img alt="Vista 1" src="vista-1.jpg"/></div><div class="swiper-slide"><img alt="Quarto 2" src="quarto-2.jpg"/></div><div class="swiper-slide"><img alt="Quarto 3" src="quarto-3.jpg"/></div><div class="swiper-slide"><img alt="Suite casal 1" src="suite-casal-1.jpg"/></div><div class="swiper-slide"><img alt="Suite casal 2" src="suite-casal-2.jpg"/></div></div>
+
+<section id="galeria" data-aos="fade-up">
+  <h2>Galeria de Fotos</h2>
+  <div class="swiper mySwiper">
+   <div class="swiper-wrapper">
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidro 1"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidro 2"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Neon"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/piscina.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/piscina.jpg" alt="Piscina"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-1.jpg" alt="Quarto 1"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-2.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-2.jpg" alt="Quarto 2"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-3.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-3.jpg" alt="Quarto 3"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-4.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-4.jpg" alt="Quarto 4"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-5.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/quarto-5.jpg" alt="Quarto 5"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/salao-jogos-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/salao-jogos-1.jpg" alt="Salão de Jogos"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/sinuca.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/sinuca.jpg" alt="Mesa de Sinuca"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-1.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-1.jpg" alt="Suíte Casal 1"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-2.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-2.jpg" alt="Suíte Casal 2"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-3.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/suite-casal-3.jpg" alt="Suíte Casal 3"></a></div>
+  <div class="swiper-slide"><a href="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/toto.jpg" data-lightbox="galeria"><img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/toto.jpg" alt="Totó"></a></div>
 </div>
+
 </section>
-<section id="contato">
-<h2>Contato</h2>
-<div class="cta">
-<p>Reserve agora e viva momentos incríveis na Casa do Céu!</p>
-<a href="https://wa.me/5531975655119" target="_blank">Fale conosco no WhatsApp</a>
-</div>
+
+<section id="pacotes" data-aos="fade-up">
+  <h2>Pacotes</h2>
+  <p><strong>Day Use:</strong> R$ 1.050 (Check-in às 09h30 | Check-out às 20h00)</p>
+  <p><strong>Pacote 3 dias:</strong> R$ 900 por diária</p>
 </section>
+
+<section id="localizacao" data-aos="fade-up">
+  <h2>Localização</h2>
+  <p>Rua das Nascentes, nº 10 – Vila Nossa Senhora de Fátima, Belo Horizonte/MG</p>
+  <iframe src="https://www.google.com/maps?q=-19.938341,-43.903907&z=15&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<section id="contato" data-aos="fade-up">
+  <h2>Contato e Reservas</h2>
+  <div class="cta">
+    <p>Fale conosco pelo WhatsApp para reservar sua data!</p>
+    <a href="https://wa.me/5531975746489" target="_blank" style="background-color:#0077cc;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;">Entrar em Contato</a>
+  </div>
+</section>
+
 <footer>
-<p>© 2025 Casa do Céu. Todos os direitos reservados.</p>
+  <p>&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
 </footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 <script>
-    const swiper = new Swiper('.mySwiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 15,
-      freeMode: true,
-      loop: true
-    });
-  </script>
+  AOS.init({ duration: 1000, once: true });
+  var swiper = new Swiper('.mySwiper', {
+    slidesPerView: 'auto',
+    spaceBetween: 15,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    loop: true,
+  });
+</script>
+
 </body>
 </html>

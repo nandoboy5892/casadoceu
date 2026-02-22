@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Casa do Céu – Refúgio nas montanhas de Belo Horizonte. Jacuzzi, piscina aquecida, salão de jogos e muito mais.">
   <title>Casa do Céu - Refúgio nas Montanhas</title>
-  
+
   <!-- Favicon -->
   <link rel="icon" href="https://i.imgur.com/Tgntdk2.png" type="image/png">
 
@@ -12,9 +13,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
-  
+
   <!-- Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     :root {
       --primary: #0077cc;
@@ -24,17 +26,20 @@
       --dark: #212529;
       --gray: #6c757d;
       --white: #ffffff;
-      --overlay: rgba(0, 0, 0, 0.6);
       --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
     }
-    
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Quicksand', sans-serif;
       color: var(--dark);
@@ -42,14 +47,14 @@
       overflow-x: hidden;
       background-color: var(--light);
     }
-    
+
     h1, h2, h3 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       line-height: 1.3;
     }
-    
-    /* Navegação */
+
+    /* ── Navegação ── */
     nav {
       position: fixed;
       top: 0;
@@ -62,7 +67,7 @@
       box-shadow: var(--shadow);
       z-index: 1000;
     }
-    
+
     .nav-container {
       display: flex;
       width: 100%;
@@ -70,7 +75,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .nav-logo {
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
@@ -81,17 +86,18 @@
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     .nav-logo img {
       height: 30px;
       width: auto;
     }
-    
+
     .nav-links {
       display: flex;
       gap: 1.5rem;
+      align-items: center;
     }
-    
+
     .nav-links a {
       text-decoration: none;
       color: var(--dark);
@@ -100,11 +106,12 @@
       transition: var(--transition);
       position: relative;
     }
-    
-    .nav-links a:hover {
+
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--primary);
     }
-    
+
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -115,15 +122,39 @@
       background-color: var(--primary);
       transition: var(--transition);
     }
-    
-    .nav-links a:hover::after {
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
       width: 100%;
     }
-    
-    /* Cabeçalho Hero */
+
+    /* Menu hambúrguer */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--dark);
+      transition: var(--transition);
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Hero ── */
     header {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                  url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center/cover;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/imagem-fundo.jpg') no-repeat center center / cover;
       height: 100vh;
       min-height: 600px;
       display: flex;
@@ -133,35 +164,36 @@
       text-align: center;
       color: var(--white);
       padding: 0 1.5rem;
-      position: relative;
     }
-    
+
     .hero-content {
       max-width: 800px;
       animation: fadeInUp 1s ease;
     }
-    
+
     header img {
       max-width: 280px;
       width: 100%;
       margin-bottom: 1.5rem;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
     }
-    
+
     header h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
-    
+
     header p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
       max-width: 600px;
     }
-    
+
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
       background-color: var(--primary);
       color: var(--white);
       padding: 0.8rem 1.8rem;
@@ -171,37 +203,54 @@
       transition: var(--transition);
       border: 2px solid transparent;
     }
-    
+
     .btn:hover {
       background-color: var(--primary-dark);
       transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
-    
+
+    .btn:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+    }
+
     .btn-outline {
       background-color: transparent;
       border-color: var(--white);
       margin-left: 1rem;
     }
-    
+
     .btn-outline:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255,255,255,0.15);
     }
-    
-    /* Seções */
+
+    /* ── Seções ── */
     section {
       padding: 5rem 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .section-title {
       text-align: center;
       margin-bottom: 3rem;
       position: relative;
       color: var(--primary);
+      font-size: 2rem;
     }
-    
+
     .section-title::after {
       content: '';
       position: absolute;
@@ -211,190 +260,316 @@
       width: 80px;
       height: 4px;
       background-color: var(--primary);
+      border-radius: 2px;
     }
-    
-    /* Sobre */
+
+    /* ── Sobre ── */
     #sobre {
       background-color: var(--white);
     }
-    
-    /* Galeria */
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .sobre-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--light);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .sobre-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .sobre-item i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .sobre-item h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .sobre-intro {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 1rem;
+      font-size: 1.05rem;
+    }
+
+    /* ── Galeria ── */
     #galeria {
       background-color: var(--light);
     }
-    
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
-    
+
     .gallery-item {
       border-radius: 10px;
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: var(--transition);
       aspect-ratio: 4/3;
+      cursor: zoom-in;
     }
-    
+
     .gallery-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
-    
+
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: var(--transition);
     }
-    
+
     .gallery-item:hover img {
       transform: scale(1.05);
     }
-    
-    /* valores */
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      cursor: zoom-out;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      transition: var(--transition);
+    }
+
+    .lightbox-close:hover {
+      color: #ddd;
+      transform: scale(1.2);
+    }
+
+    /* ── Valores ── */
     #valores {
       background-color: var(--white);
     }
-    
+
     .packages-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
     }
-    
+
     .package-card {
       background-color: var(--light);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 2rem;
       box-shadow: var(--shadow);
       text-align: center;
       transition: var(--transition);
+      display: flex;
+      flex-direction: column;
     }
-    
+
     .package-card:hover {
       transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
     }
-    
-    .package-card h3 {
+
+    .package-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
       color: var(--primary);
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
-    
+
+    .package-schedule {
+      background-color: var(--white);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .package-schedule-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.97rem;
+      color: var(--gray);
+      padding: 0.3rem 0;
+    }
+
+    .package-schedule-row:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+
+    .package-schedule-row i {
+      color: var(--primary);
+      width: 16px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .package-schedule-row strong {
+      color: var(--dark);
+    }
+
     .price {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: var(--primary);
-      margin: 1rem 0;
+      margin: 1rem 0 1.5rem;
     }
-    
-    .price small {
-      font-size: 1rem;
-      font-weight: normal;
-      display: block;
-      color: var(--gray);
-    }
-    
-    .package-card ul {
+
+    .package-features {
       list-style: none;
       text-align: left;
-      margin: 1.5rem 0;
+      margin-bottom: 1.5rem;
+      flex: 1;
     }
-    
-    .package-card ul li {
-      margin-bottom: 0.5rem;
-      padding-left: 1.5rem;
-      position: relative;
+
+    .package-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.97rem;
     }
-    
-    .package-card ul li::before {
-      content: '\f00c';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      left: 0;
+
+    .package-features li i {
       color: var(--primary);
+      flex-shrink: 0;
     }
-    
-    .taxa-nota {
-      color: var(--gray);
+
+    .taxa-inclusa {
       font-size: 0.85rem;
-      margin: 1rem 0;
-      text-align: center;
-      font-style: italic;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
     }
-    
-    /* Localização */
+
+    /* ── Localização ── */
     #localizacao {
       background-color: var(--light);
     }
-    
+
+    #localizacao p {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
     .map-container {
       width: 100%;
       height: 400px;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       box-shadow: var(--shadow);
       margin-top: 2rem;
     }
-    
-    /* Contato */
+
+    /* ── Contato ── */
     #contato {
       background-color: var(--white);
       text-align: center;
     }
-    
+
     .contact-info {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       margin: 2rem 0;
     }
-    
+
     .contact-item {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      font-size: 1.05rem;
     }
-    
+
     .contact-item i {
       color: var(--primary);
       font-size: 1.2rem;
     }
-    
-    /* Rodapé */
+
+    /* ── Rodapé ── */
     footer {
       background-color: var(--dark);
       color: var(--white);
       padding: 3rem 1.5rem;
       text-align: center;
     }
-    
+
     .footer-content {
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .footer-logo {
       font-family: 'Montserrat', sans-serif;
       font-size: 1.5rem;
       font-weight: 800;
       color: var(--white);
+      text-decoration: none;
       margin-bottom: 1.5rem;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     .footer-logo img {
       height: 25px;
       width: auto;
     }
-    
+
     .footer-links {
       display: flex;
       justify-content: center;
@@ -402,24 +577,24 @@
       gap: 1.5rem;
       margin: 1.5rem 0;
     }
-    
+
     .footer-links a {
       color: var(--white);
       text-decoration: none;
       transition: var(--transition);
     }
-    
+
     .footer-links a:hover {
       color: var(--primary);
     }
-    
+
     .social-links {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
       margin: 1.5rem 0;
     }
-    
+
     .social-links a {
       display: flex;
       align-items: center;
@@ -427,23 +602,23 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255,255,255,0.1);
       color: var(--white);
       transition: var(--transition);
     }
-    
+
     .social-links a:hover {
       background-color: var(--primary);
       transform: translateY(-3px);
     }
-    
+
     .copyright {
       margin-top: 2rem;
       color: var(--gray);
       font-size: 0.9rem;
     }
-    
-    /* Botões flutuantes */
+
+    /* ── Botões Flutuantes ── */
     .float-btn {
       position: fixed;
       bottom: 2rem;
@@ -460,64 +635,87 @@
       box-shadow: var(--shadow);
       transition: var(--transition);
     }
-    
+
     .float-btn:hover {
       transform: translateY(-5px) scale(1.1);
     }
-    
+
     .whatsapp {
       right: 2rem;
       background-color: var(--secondary);
     }
-    
+
     .instagram {
       right: 5.5rem;
       background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
     }
-    
-    /* Animações */
+
+    /* ── Animações ── */
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    
-    /* Responsividade */
+
+    /* ── Responsividade ── */
     @media (max-width: 768px) {
-      .nav-container {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.98);
         flex-direction: column;
+        padding: 1rem 1.5rem 1.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         gap: 1rem;
       }
-      
-      header {
-        min-height: 500px;
+
+      .nav-links.open {
+        display: flex;
       }
-      
+
       header h1 {
         font-size: 2rem;
       }
-      
-      .btn {
-        padding: 0.7rem 1.5rem;
-      }
-      
+
       .hero-buttons {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        align-items: center;
       }
-      
+
       .btn-outline {
         margin-left: 0;
       }
-      
+
       .packages-container {
         grid-template-columns: 1fr;
+      }
+
+      .sobre-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sobre-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+
+      .instagram {
+        right: 4.5rem;
       }
     }
   </style>
@@ -531,145 +729,230 @@
         <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
         <span>Casa do Céu</span>
       </a>
-      <div class="nav-links">
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="#sobre">Sobre</a>
         <a href="#galeria">Galeria</a>
         <a href="#valores">Valores</a>
         <a href="#localizacao">Localização</a>
         <a href="#contato">Contato</a>
-        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank">Agendamento</a>
+        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank" rel="noopener noreferrer">Agendamento</a>
       </div>
     </div>
   </nav>
 
-  <!-- Cabeçalho Hero -->
+  <!-- Hero -->
   <header>
     <div class="hero-content">
       <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
       <h1>Bem-vindo à Casa do Céu</h1>
       <p>Seu refúgio entre o céu e as montanhas</p>
       <div class="hero-buttons">
-        <a href="#valores" class="btn">Conheça Nossos Valores</a>
+        <a href="#valores" class="btn">Conheça Nossas Opções</a>
         <a href="#contato" class="btn btn-outline">Fale Conosco</a>
       </div>
     </div>
   </header>
 
-  <!-- Seção Sobre -->
+  <!-- Sobre -->
   <section id="sobre">
-    <h2 class="section-title">Sobre a Casa</h2>
-    <p>No topo das montanhas de Belo Horizonte, a Casa do Céu foi criada para ser um refúgio de tranquilidade e conexão.</p>
-    <p>Pensada para receber famílias, amigos e celebrar momentos especiais, nossa casa é o lugar perfeito tanto para aniversários quanto para aquele merecido descanso após uma semana corrida.</p>
-    <p>Equipado para o seu conforto, o espaço oferece uma jacuzzi relaxante, piscina aquecida, salão de jogos, Wi-Fi, além de 4 quartos acolhedores.</p>
+    <h2 class="section-title fade-in">Sobre a Casa</h2>
+    <p class="sobre-intro fade-in">
+      No topo das montanhas de Belo Horizonte, a Casa do Céu foi criada para ser um refúgio de tranquilidade e conexão.
+      Pensada para receber famílias, amigos e celebrar momentos especiais — seja um aniversário ou um merecido descanso de fim de semana.
+    </p>
+    <div class="sobre-grid fade-in">
+      <div class="sobre-item">
+        <i class="fas fa-hot-tub"></i>
+        <h3>Jacuzzi</h3>
+        <p>Relaxe em nossa banheira de hidromassagem com vista para as montanhas.</p>
+      </div>
+      <div class="sobre-item">
+        <i class="fas fa-swimming-pool"></i>
+        <h3>Piscina Aquecida</h3>
+        <p>Mergulhe em qualquer época do ano com conforto e segurança.</p>
+      </div>
+      <div class="sobre-item">
+        <i class="fas fa-gamepad"></i>
+        <h3>Salão de Jogos</h3>
+        <p>Diversão garantida com fliperama e entretenimento para todos.</p>
+      </div>
+      <div class="sobre-item">
+        <i class="fas fa-bed"></i>
+        <h3>4 Quartos</h3>
+        <p>Acomodações acolhedoras para toda a sua turma descansar bem.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Seção Galeria -->
+  <!-- Galeria -->
   <section id="galeria">
-    <h2 class="section-title">Galeria de Fotos</h2>
-    <div class="gallery">
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa">
+    <h2 class="section-title fade-in">Galeria de Fotos</h2>
+    <div class="gallery fade-in">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Casa">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Cascata">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto do Corredor">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto do Fliperama">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidro 1">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidromassagem" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidro 2">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem 2">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidromassagem 2" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto do Jardim Vertical">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Neon">
+      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Decoração Neon">
+        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Decoração Neon" loading="lazy">
       </div>
     </div>
   </section>
 
-<!-- Seção valores -->
-<section id="valores">
-  <h2 class="section-title">Nossos Valores</h2>
-  <div class="packages-container">
-    <div class="package-card">
-      <h3>Day Use</h3>
-      <p>Perfeito para um dia de relaxamento</p>
-      <div class="price">R$ 1.049,90 </div>
-      <ul>
-        <li>Check-in às 10h00</li>
-        <li>Check-out às 20h00</li>
-        <li>Acesso a todas as áreas</li>
-        <li>Capacidade para até 30 pessoas</li>
-      </ul>
-      <p class="taxa-nota"><small>* Taxa de limpeza de R$ 200,00 cobrada à parte</small></p>
-      <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" class="btn" target="_blank">Reservar</a>
-    </div>
-    
-    <div class="package-card">
-      <h3>Pacote de Diárias</h3>
-      <p>Experiência completa de descanso</p>
-      <div class="price">R$ 949,90 <small>por diária</small></div>
-      <ul>
-        <li>Mínimo de 2 diárias</li>
-        <li>Check-in às 14h</li>
-        <li>Check-out às 12h</li>
-        <li>Acesso a todas as áreas</li>
-        <li>Capacidade para até 30 pessoas</li>
-      </ul>
-      <p class="taxa-nota"><small>* Taxa de limpeza de R$ 200,00 cobrada à parte</small></p>
-      <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" class="btn" target="_blank">Reservar</a>
-    </div>
-    
-    <div class="package-card">
-      <h3>Eventos e Festas</h3>
-      <p>Aniversários, Confraternizações e Mais</p>
-      <div class="price">R$ 1.699,90 <small>pacote de 2 dias</small></div>
-      <ul>
-        <li>Check-in: 10h00 do dia do evento</li>
-        <li>Check-out: 18h do dia seguinte</li>
-        <li>Acesso a todas as áreas da casa</li>
-        <li>Ideal para festas e eventos especiais</li>
-        <li>Capacidade para até 40 pessoas</li>
-      </ul>
-      <p class="taxa-nota"><small>* Taxa de limpeza de R$ 200,00 cobrada à parte</small></p>
-      <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" class="btn" target="_blank">Reservar</a>
-    </div>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Fechar imagem">&times;</button>
+    <img src="" alt="Imagem ampliada" id="lightbox-img">
   </div>
-</section>
 
-  <!-- Seção Localização -->
-  <section id="localizacao">
-    <h2 class="section-title">Nossa Localização</h2>
-    <p>Rua das Nascentes, nº 10 – Vila Nossa Senhora de Fátima, Belo Horizonte/MG</p>
-    <div class="map-container">
-      <iframe src="https://www.google.com/maps?q=-19.938341,-43.903907&z=15&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  <!-- Valores -->
+  <section id="valores">
+    <h2 class="section-title fade-in">Opções de Locação</h2>
+    <p class="sobre-intro fade-in" style="margin-bottom: 0.5rem;">
+      Taxa de limpeza inclusa em todas as opções.
+    </p>
+    <div class="packages-container fade-in">
+
+      <!-- 1 dia -->
+      <div class="package-card">
+        <div class="package-card-title">
+          <i class="far fa-calendar-alt"></i> 1 dia na casa
+        </div>
+        <div class="package-schedule">
+          <div class="package-schedule-row">
+            <i class="fas fa-clock"></i>
+            <span><strong>10:00</strong> às <strong>20:00</strong></span>
+          </div>
+        </div>
+        <div class="price">R$ 1.249,90</div>
+        <ul class="package-features">
+          <li><i class="fas fa-check-circle"></i> Acesso a todas as áreas</li>
+          <li><i class="fas fa-check-circle"></i> Capacidade para até 30 pessoas</li>
+          <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
+          <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
+        </ul>
+        <div class="taxa-inclusa">
+          <i class="fas fa-check"></i> Taxa de limpeza inclusa
+        </div>
+        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" class="btn" target="_blank" rel="noopener noreferrer">Reservar</a>
+      </div>
+
+      <!-- 2 dias -->
+      <div class="package-card">
+        <div class="package-card-title">
+          <i class="far fa-calendar-alt"></i> 2 dias na casa
+        </div>
+        <div class="package-schedule">
+          <div class="package-schedule-row">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Entrada às <strong>12:00</strong> do 1º dia</span>
+          </div>
+          <div class="package-schedule-row">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Saída às <strong>20:00</strong> do 2º dia</span>
+          </div>
+        </div>
+        <div class="price">R$ 1.899,90</div>
+        <ul class="package-features">
+          <li><i class="fas fa-check-circle"></i> Acesso a todas as áreas</li>
+          <li><i class="fas fa-check-circle"></i> Capacidade para até 30 pessoas</li>
+          <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
+          <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
+        </ul>
+        <div class="taxa-inclusa">
+          <i class="fas fa-check"></i> Taxa de limpeza inclusa
+        </div>
+        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" class="btn" target="_blank" rel="noopener noreferrer">Reservar</a>
+      </div>
+
+      <!-- 3 dias -->
+      <div class="package-card">
+        <div class="package-card-title">
+          <i class="far fa-calendar-alt"></i> 3 dias na casa
+        </div>
+        <div class="package-schedule">
+          <div class="package-schedule-row">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Entrada às <strong>18:00</strong> do 1º dia</span>
+          </div>
+          <div class="package-schedule-row">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Saída às <strong>16:00</strong> do 3º dia</span>
+          </div>
+        </div>
+        <div class="price">R$ 2.099,80</div>
+        <ul class="package-features">
+          <li><i class="fas fa-check-circle"></i> Acesso a todas as áreas</li>
+          <li><i class="fas fa-check-circle"></i> Capacidade para até 30 pessoas</li>
+          <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
+          <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
+        </ul>
+        <div class="taxa-inclusa">
+          <i class="fas fa-check"></i> Taxa de limpeza inclusa
+        </div>
+        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" class="btn" target="_blank" rel="noopener noreferrer">Reservar</a>
+      </div>
+
     </div>
   </section>
 
-  <!-- Seção Contato -->
+  <!-- Localização -->
+  <section id="localizacao">
+    <h2 class="section-title fade-in">Nossa Localização</h2>
+    <p class="fade-in">
+      <i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:0.4rem;"></i>
+      Rua das Nascentes, nº 10 – Vila Nossa Senhora de Fátima, Belo Horizonte/MG
+    </p>
+    <div class="map-container fade-in">
+      <iframe
+        src="https://www.google.com/maps?q=-19.938341,-43.903907&z=15&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        title="Localização da Casa do Céu no Google Maps"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Contato -->
   <section id="contato">
-    <h2 class="section-title">Contato e Reservas</h2>
-    <p>Entre em contato conosco para mais informações ou para reservar sua estadia</p>
-    
-    <div class="contact-info">
+    <h2 class="section-title fade-in">Contato e Reservas</h2>
+    <p class="fade-in">Entre em contato conosco para mais informações ou para reservar sua estadia</p>
+    <div class="contact-info fade-in">
       <div class="contact-item">
         <i class="fas fa-phone-alt"></i>
-        <span>(31) 97574-6489</span>
+        <a href="tel:+5531975746489" style="color:inherit; text-decoration:none;">(31) 97574-6489</a>
       </div>
       <div class="contact-item">
         <i class="fas fa-envelope"></i>
-        <span>casadoceubh@gmail.com</span>
+        <a href="mailto:casadoceubh@gmail.com" style="color:inherit; text-decoration:none;">casadoceubh@gmail.com</a>
       </div>
     </div>
-    
-    <a href="https://wa.me/5531975746489" class="btn" target="_blank">
+    <a href="https://wa.me/5531975746489" class="btn" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
       <i class="fab fa-whatsapp"></i> Falar no WhatsApp
     </a>
   </section>
@@ -681,89 +964,117 @@
         <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
         <span>Casa do Céu</span>
       </a>
-      
       <div class="footer-links">
         <a href="#sobre">Sobre</a>
         <a href="#galeria">Galeria</a>
         <a href="#valores">Valores</a>
         <a href="#localizacao">Localização</a>
         <a href="#contato">Contato</a>
-        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank">Agendamento</a>
+        <a href="https://nandoboy5892.github.io/casadoceu/agendamento/" target="_blank" rel="noopener noreferrer">Agendamento</a>
       </div>
-      
       <div class="social-links">
-        <a href="https://wa.me/5531975746489" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://instagram.com/casadoceubh" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5531975746489" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/casadoceubh" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
       </div>
-      
       <p class="copyright">&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
     </div>
   </footer>
 
   <!-- Botões Flutuantes -->
-  <a href="https://wa.me/5531975746489" class="float-btn whatsapp" target="_blank">
+  <a href="https://wa.me/5531975746489" class="float-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
-  
-  <a href="https://instagram.com/casadoceubh" class="float-btn instagram" target="_blank">
+  <a href="https://instagram.com/casadoceubh" class="float-btn instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
     <i class="fab fa-instagram"></i>
   </a>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Lightbox para galeria
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      
-      galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-          const imgSrc = this.querySelector('img').src;
-          const lightbox = document.createElement('div');
-          lightbox.style.position = 'fixed';
-          lightbox.style.top = '0';
-          lightbox.style.left = '0';
-          lightbox.style.width = '100%';
-          lightbox.style.height = '100%';
-          lightbox.style.backgroundColor = 'rgba(0,0,0,0.9)';
-          lightbox.style.display = 'flex';
-          lightbox.style.justifyContent = 'center';
-          lightbox.style.alignItems = 'center';
-          lightbox.style.zIndex = '2000';
-          lightbox.style.cursor = 'zoom-out';
-          
-          const img = document.createElement('img');
-          img.src = imgSrc;
-          img.style.maxWidth = '90%';
-          img.style.maxHeight = '90%';
-          img.style.objectFit = 'contain';
-          
-          lightbox.appendChild(img);
-          document.body.appendChild(lightbox);
-          
-          lightbox.addEventListener('click', function() {
-            document.body.removeChild(lightbox);
-          });
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // ── Menu Hambúrguer ──
+      const hamburger = document.getElementById('hamburger');
+      const navLinks  = document.getElementById('nav-links');
+
+      hamburger.addEventListener('click', function () {
+        const isOpen = navLinks.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
         });
       });
-      
-      // Scroll suave
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 80,
-              behavior: 'smooth'
-            });
+
+      // ── Lightbox ──
+      const lightbox      = document.getElementById('lightbox');
+      const lightboxImg   = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        const openLightbox = () => {
+          lightboxImg.src = item.querySelector('img').src;
+          lightboxImg.alt = item.querySelector('img').alt;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        };
+        item.addEventListener('click', openLightbox);
+        item.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') openLightbox();
+        });
+      });
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+      };
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+
+      // ── Animações de entrada ──
+      const fadeEls = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         });
-      });
+      }, { threshold: 0.15 });
+
+      fadeEls.forEach(el => observer.observe(el));
+
+      // ── Link ativo no scroll ──
+      const sections   = document.querySelectorAll('section[id]');
+      const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navAnchors.forEach(a => a.classList.remove('active'));
+            const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+
+      sections.forEach(s => sectionObserver.observe(s));
+
     });
   </script>
 </body>
 </html>
-

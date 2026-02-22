@@ -306,41 +306,92 @@
       font-size: 1.05rem;
     }
 
-    /* ── Galeria ── */
+    /* ── Galeria (Carrossel) ── */
     #galeria {
       background-color: var(--light);
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+    .carousel-container {
+      position: relative;
+      max-width: 800px; /* Largura máxima do carrossel */
+      margin: 2rem auto 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
     }
 
-    .gallery-item {
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      aspect-ratio: 4/3;
+    .carousel-slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+      aspect-ratio: 16/9; /* Proporção para as imagens do carrossel */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--dark); /* Fundo para preencher se a imagem não cobrir */
       cursor: zoom-in;
     }
 
-    .gallery-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .gallery-item img {
+    .carousel-item img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
+      object-fit: cover; /* Garante que a imagem cubra o item */
+      display: block;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.05);
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: var(--white);
+      border: none;
+      padding: 1rem 0.8rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      z-index: 10;
+      transition: background-color 0.3s ease;
+      border-radius: 5px;
+    }
+
+    .carousel-button:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .indicator.active {
+      background-color: var(--white);
+      transform: scale(1.2);
     }
 
     /* ── Lightbox ── */
@@ -683,6 +734,10 @@
         font-size: 2rem;
       }
 
+      header p {
+        font-size: 1rem;
+      }
+
       .hero-buttons {
         display: flex;
         flex-direction: column;
@@ -701,6 +756,10 @@
       .sobre-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -716,6 +775,11 @@
 
       .instagram {
         right: 4.5rem;
+      }
+
+      .carousel-button {
+        padding: 0.7rem 0.5rem;
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -740,7 +804,8 @@
         <a href="#valores">Valores</a>
         <a href="#localizacao">Localização</a>
         <a href="#contato">Contato</a>
-        <a href="https://wa.me/5531975746489" target="_blank" rel="noopener noreferrer">Agendamento</a>
+        <!-- O link de agendamento na nav pode ser o WhatsApp geral ou um link para uma página de agendamento se existir -->
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Agendamento</a>
       </div>
     </div>
   </nav>
@@ -752,7 +817,7 @@
       <h1>Bem-vindo à Casa do Céu</h1>
       <p>Seu refúgio entre o céu e as montanhas</p>
       <div class="hero-buttons">
-        <a href="https://wa.me/5531975746489" class="btn" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> Reservar Agora
         </a>
         <a href="#contato" class="btn btn-outline">Fale Conosco</a>
@@ -794,31 +859,36 @@
   <!-- Galeria -->
   <section id="galeria">
     <h2 class="section-title fade-in">Galeria de Fotos</h2>
-    <div class="gallery fade-in">
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Casa">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa" loading="lazy">
+    <div class="carousel-container fade-in">
+      <div class="carousel-slides" id="carousel-slides">
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Casa">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa" loading="lazy">
+        </div>
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Cascata">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata" loading="lazy">
+        </div>
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto do Corredor">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor" loading="lazy">
+        </div>
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto do Fliperama">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama" loading="lazy">
+        </div>
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidromassagem" loading="lazy">
+        </div>
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem 2">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidromassagem 2" loading="lazy">
+        </div>
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto do Jardim Vertical">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical" loading="lazy">
+        </div>
+        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Decoração Neon">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Decoração Neon" loading="lazy">
+        </div>
       </div>
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Cascata">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata" loading="lazy">
-      </div>
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto do Corredor">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor" loading="lazy">
-      </div>
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto do Fliperama">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama" loading="lazy">
-      </div>
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidromassagem" loading="lazy">
-      </div>
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem 2">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidromassagem 2" loading="lazy">
-      </div>
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto do Jardim Vertical">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical" loading="lazy">
-      </div>
-      <div class="gallery-item" role="button" tabindex="0" aria-label="Ver foto da Decoração Neon">
-        <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Decoração Neon" loading="lazy">
-      </div>
+      <button class="carousel-button prev" id="carousel-prev" aria-label="Slide anterior">&#10094;</button>
+      <button class="carousel-button next" id="carousel-next" aria-label="Próximo slide">&#10095;</button>
+      <div class="carousel-indicators" id="carousel-indicators"></div>
     </div>
   </section>
 
@@ -857,7 +927,7 @@
         <div class="taxa-inclusa">
           <i class="fas fa-check"></i> Taxa de limpeza inclusa
         </div>
-        <a href="https://wa.me/5531975746489" class="btn" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%201%20dia%20na%20Casa%20do%20Céu%20(10:00%20às%2020:00)%20por%20R$%201.249,90.%20Poderia%20me%20dar%20mais%20detalhes%20ou%20ajudar%20com%20a%20reserva?" class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> Reservar
         </a>
       </div>
@@ -887,7 +957,7 @@
         <div class="taxa-inclusa">
           <i class="fas fa-check"></i> Taxa de limpeza inclusa
         </div>
-        <a href="https://wa.me/5531975746489" class="btn" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%202%20dias%20na%20Casa%20do%20Céu%20(entrada%2012:00%20do%201º%20dia,%20saída%2020:00%20do%202º%20dia)%20por%20R$%201.899,90.%20Poderia%20me%20dar%20mais%20detalhes%20ou%20ajudar%20com%20a%20reserva?" class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> Reservar
         </a>
       </div>
@@ -917,7 +987,7 @@
         <div class="taxa-inclusa">
           <i class="fas fa-check"></i> Taxa de limpeza inclusa
         </div>
-        <a href="https://wa.me/5531975746489" class="btn" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%203%20dias%20na%20Casa%20do%20Céu%20(entrada%2018:00%20do%201º%20dia,%20saída%2016:00%20do%203º%20dia)%20por%20R$%202.099,80.%20Poderia%20me%20dar%20mais%20detalhes%20ou%20ajudar%20com%20a%20reserva?" class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> Reservar
         </a>
       </div>
@@ -960,7 +1030,7 @@
         <a href="mailto:casadoceubh@gmail.com" style="color:inherit; text-decoration:none;">casadoceubh@gmail.com</a>
       </div>
     </div>
-    <a href="https://wa.me/5531975746489" class="btn" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." class="btn" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
       <i class="fab fa-whatsapp"></i> Falar no WhatsApp
     </a>
   </section>
@@ -978,10 +1048,10 @@
         <a href="#valores">Valores</a>
         <a href="#localizacao">Localização</a>
         <a href="#contato">Contato</a>
-        <a href="https://wa.me/5531975746489" target="_blank" rel="noopener noreferrer">Agendamento</a>
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Agendamento</a>
       </div>
       <div class="social-links">
-        <a href="https://wa.me/5531975746489" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
           <i class="fab fa-whatsapp"></i>
         </a>
         <a href="https://instagram.com/casadoceubh" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -993,7 +1063,7 @@
   </footer>
 
   <!-- Botões Flutuantes -->
-  <a href="https://wa.me/5531975746489" class="float-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." class="float-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
   <a href="https://instagram.com/casadoceubh" class="float-btn instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -1021,12 +1091,55 @@
         });
       });
 
-      // ── Lightbox ──
+      // ── Carrossel da Galeria ──
+      const carouselSlides = document.getElementById('carousel-slides');
+      const carouselItems = document.querySelectorAll('.carousel-item');
+      const prevButton = document.getElementById('carousel-prev');
+      const nextButton = document.getElementById('carousel-next');
+      const indicatorsContainer = document.getElementById('carousel-indicators');
+      let currentIndex = 0;
+
+      function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carouselSlides.style.transform = `translateX(${offset}%)`;
+        updateIndicators();
+      }
+
+      function updateIndicators() {
+        indicatorsContainer.innerHTML = '';
+        carouselItems.forEach((_, index) => {
+          const indicator = document.createElement('div');
+          indicator.classList.add('indicator');
+          if (index === currentIndex) {
+            indicator.classList.add('active');
+          }
+          indicator.addEventListener('click', () => {
+            currentIndex = index;
+            updateCarousel();
+          });
+          indicatorsContainer.appendChild(indicator);
+        });
+      }
+
+      prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
+        updateCarousel();
+      });
+
+      nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+      });
+
+      // Inicializa o carrossel
+      updateCarousel();
+
+      // ── Lightbox (adaptado para o carrossel) ──
       const lightbox      = document.getElementById('lightbox');
       const lightboxImg   = document.getElementById('lightbox-img');
       const lightboxClose = document.getElementById('lightbox-close');
 
-      document.querySelectorAll('.gallery-item').forEach(item => {
+      document.querySelectorAll('.carousel-item').forEach(item => {
         const openLightbox = () => {
           lightboxImg.src = item.querySelector('img').src;
           lightboxImg.alt = item.querySelector('img').alt;

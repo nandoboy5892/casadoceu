@@ -546,7 +546,7 @@
       gap: 0.4rem;
     }
 
-    /* ── Localização ── */
+    /* ── Localização e Calendário ── */
     #localizacao {
       background-color: var(--light);
     }
@@ -563,6 +563,30 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       margin-top: 2rem;
+      margin-bottom: 3rem; /* Espaçamento entre mapa e calendário */
+    }
+
+    .calendar-container {
+      max-width: 800px; /* Limita a largura do calendário */
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .calendar-container h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .calendar-embed iframe {
+      width: 100%;
+      min-height: 600px; /* Altura mínima para o calendário */
+      border: none;
+      border-radius: 8px;
     }
 
     /* ── Contato ── */
@@ -760,6 +784,15 @@
       .section-title {
         font-size: 1.8rem;
       }
+
+      .calendar-container {
+        margin: 1.5rem;
+        padding: 1rem;
+      }
+
+      .calendar-embed iframe {
+        min-height: 500px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -803,9 +836,10 @@
         <a href="#galeria">Galeria</a>
         <a href="#valores">Valores</a>
         <a href="#localizacao">Localização</a>
+        <a href="#calendario">Disponibilidade</a> <!-- Novo link para o calendário -->
         <a href="#contato">Contato</a>
-        <!-- O link de agendamento na nav pode ser o WhatsApp geral ou um link para uma página de agendamento se existir -->
-        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Agendamento</a>
+        <!-- O link de agendamento na nav agora aponta para a seção do calendário -->
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Reservar</a>
       </div>
     </div>
   </nav>
@@ -995,7 +1029,7 @@
     </div>
   </section>
 
-  <!-- Localização -->
+  <!-- Localização e Calendário de Disponibilidade -->
   <section id="localizacao">
     <h2 class="section-title fade-in">Nossa Localização</h2>
     <p class="fade-in">
@@ -1013,6 +1047,24 @@
         title="Localização da Casa do Céu no Google Maps"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
+    </div>
+
+    <div class="calendar-container fade-in" id="calendario">
+      <h3><i class="far fa-calendar-check" style="margin-right: 0.5rem; color: var(--primary);"></i> Verifique a Disponibilidade</h3>
+      <p style="margin-bottom: 1.5rem; color: var(--gray);">Os dias marcados como "Ocupado" já estão reservados.</p>
+      <div class="calendar-embed">
+        <iframe
+          frameborder="0"
+          loading="lazy"
+          scrolling="no"
+          src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&ctz=America%2FSao_Paulo"
+          title="Calendário de Disponibilidade da Casa do Céu">
+        </iframe>
+      </div>
+      <p style="margin-top: 1.5rem;">Para reservar, entre em contato via WhatsApp!</p>
+      <a href="https://wa.me/5531975746489?text=Olá!%20Verifiquei%20a%20disponibilidade%20no%20calendário%20e%20gostaria%20de%20reservar%20uma%20data." class="btn" target="_blank" rel="noopener noreferrer" style="margin-top: 1rem;">
+        <i class="fab fa-whatsapp"></i> Falar para Reservar
+      </a>
     </div>
   </section>
 
@@ -1047,8 +1099,9 @@
         <a href="#galeria">Galeria</a>
         <a href="#valores">Valores</a>
         <a href="#localizacao">Localização</a>
+        <a href="#calendario">Disponibilidade</a>
         <a href="#contato">Contato</a>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Agendamento</a>
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Reservar</a>
       </div>
       <div class="social-links">
         <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">

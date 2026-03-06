@@ -21,12 +21,11 @@
       --dark: #212529;
       --gray: #6c757d;
       --white: #ffffff;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
     }
 
     html { scroll-behavior: smooth; }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -48,7 +47,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255,255,255,0.98);
       backdrop-filter: blur(8px);
       display: flex;
       justify-content: center;
@@ -110,7 +109,7 @@
     .nav-links a:hover::after,
     .nav-links a.active::after { width: 100%; }
 
-    /* Botão Área Restrita no nav */
+    /* Botão Área Restrita */
     .btn-area-restrita {
       display: inline-flex;
       align-items: center;
@@ -118,8 +117,8 @@
       padding: 6px 14px;
       border-radius: 50px;
       border: 1.5px solid #dee2e6;
-      color: var(--gray) !important;
-      font-size: 0.82rem !important;
+      color: var(--gray);
+      font-size: 0.82rem;
       font-weight: 600;
       text-decoration: none;
       transition: var(--transition);
@@ -130,13 +129,13 @@
 
     .btn-area-restrita:hover {
       border-color: var(--primary);
-      color: var(--primary) !important;
+      color: var(--primary);
       background: rgba(0,119,204,0.05);
     }
 
     .btn-area-restrita::after { display: none !important; }
 
-    /* Menu hambúrguer */
+    /* Hambúrguer */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -289,13 +288,7 @@
     }
 
     .sobre-item:hover { transform: translateY(-5px); }
-
-    .sobre-item i {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-    }
-
+    .sobre-item i { font-size: 2rem; color: var(--primary); margin-bottom: 0.75rem; }
     .sobre-item h3 { font-size: 1rem; margin-bottom: 0.4rem; }
 
     .sobre-intro {
@@ -305,7 +298,7 @@
       font-size: 1.05rem;
     }
 
-    /* ── Galeria (Carrossel) ── */
+    /* ── Galeria ── */
     #galeria { background-color: var(--light); }
 
     .carousel-container {
@@ -317,10 +310,7 @@
       box-shadow: var(--shadow);
     }
 
-    .carousel-slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+    .carousel-slides { display: flex; transition: transform 0.5s ease-in-out; }
 
     .carousel-item {
       min-width: 100%;
@@ -333,18 +323,13 @@
       cursor: zoom-in;
     }
 
-    .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .carousel-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .carousel-button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0,0,0,0.5);
       color: var(--white);
       border: none;
       padding: 1rem 0.8rem;
@@ -355,9 +340,9 @@
       border-radius: 5px;
     }
 
-    .carousel-button:hover { background-color: rgba(0, 0, 0, 0.7); }
-    .carousel-button.prev  { left: 10px; }
-    .carousel-button.next  { right: 10px; }
+    .carousel-button:hover { background-color: rgba(0,0,0,0.7); }
+    .carousel-button.prev { left: 10px; }
+    .carousel-button.next { right: 10px; }
 
     .carousel-indicators {
       position: absolute;
@@ -372,16 +357,13 @@
     .indicator {
       width: 10px;
       height: 10px;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255,255,255,0.5);
       border-radius: 50%;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
-    .indicator.active {
-      background-color: var(--white);
-      transform: scale(1.2);
-    }
+    .indicator.active { background-color: var(--white); transform: scale(1.2); }
 
     /* ── Lightbox ── */
     .lightbox {
@@ -441,10 +423,7 @@
       flex-direction: column;
     }
 
-    .package-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-    }
+    .package-card:hover { transform: translateY(-10px); box-shadow: 0 12px 24px rgba(0,0,0,0.12); }
 
     .package-card-title {
       font-family: 'Montserrat', sans-serif;
@@ -476,29 +455,12 @@
     }
 
     .package-schedule-row:not(:last-child) { border-bottom: 1px solid #eee; }
-
-    .package-schedule-row i {
-      color: var(--primary);
-      width: 16px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
+    .package-schedule-row i { color: var(--primary); width: 16px; text-align: center; flex-shrink: 0; }
     .package-schedule-row strong { color: var(--dark); }
 
-    .price {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin: 1rem 0 1.5rem;
-    }
+    .price { font-size: 2.2rem; font-weight: 700; color: var(--primary); margin: 1rem 0 1.5rem; }
 
-    .package-features {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 1.5rem;
-      flex: 1;
-    }
+    .package-features { list-style: none; text-align: left; margin-bottom: 1.5rem; flex: 1; }
 
     .package-features li {
       display: flex;
@@ -521,7 +483,7 @@
       gap: 0.4rem;
     }
 
-    /* ── Localização e Calendário ── */
+    /* ── Localização ── */
     #localizacao { background-color: var(--light); }
     #localizacao p { text-align: center; margin-bottom: 0.5rem; }
 
@@ -547,41 +509,18 @@
 
     .calendar-container h3 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem; }
 
-    .calendar-embed iframe {
-      width: 100%;
-      min-height: 600px;
-      border: none;
-      border-radius: 8px;
-    }
+    .calendar-embed iframe { width: 100%; min-height: 600px; border: none; border-radius: 8px; }
 
     /* ── Contato ── */
     #contato { background-color: var(--white); text-align: center; }
 
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 2rem 0;
-    }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 1.05rem;
-    }
-
+    .contact-item { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1.05rem; }
     .contact-item i { color: var(--primary); font-size: 1.2rem; }
 
     /* ── Rodapé ── */
-    footer {
-      background-color: var(--dark);
-      color: var(--white);
-      padding: 3rem 1.5rem;
-      text-align: center;
-    }
-
+    footer { background-color: var(--dark); color: var(--white); padding: 3rem 1.5rem; text-align: center; }
     .footer-content { max-width: 1200px; margin: 0 auto; }
 
     .footer-logo {
@@ -609,12 +548,7 @@
     .footer-links a { color: var(--white); text-decoration: none; transition: var(--transition); }
     .footer-links a:hover { color: var(--primary); }
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; }
 
     .social-links a {
       display: flex;
@@ -651,7 +585,6 @@
     }
 
     .float-btn:hover { transform: translateY(-5px) scale(1.1); }
-
     .whatsapp  { right: 2rem; background-color: var(--secondary); }
     .instagram {
       right: 5.5rem;
@@ -712,8 +645,6 @@
       gap: 5px;
     }
 
-    .modal-restrita-subtitulo i { font-size: 0.75rem; }
-
     .modal-restrita h2 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
@@ -755,7 +686,7 @@
       box-shadow: 0 0 0 3px rgba(0,119,204,0.12);
     }
 
-    .modal-restrita .btn-login {
+    .btn-login {
       width: 100%;
       justify-content: center;
       padding: 11px;
@@ -774,14 +705,12 @@
       gap: 8px;
     }
 
-    .modal-restrita .btn-login:hover { background: var(--primary-dark); transform: translateY(-2px); }
-    .modal-restrita .btn-login:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .btn-login:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .btn-login:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-    .modal-restrita-erro {
-      background: #f8d7da;
-      color: #842029;
+    .modal-alerta {
       border-radius: 8px;
-      padding: 8px 12px;
+      padding: 9px 12px;
       font-size: 0.82rem;
       font-weight: 600;
       margin-bottom: 12px;
@@ -790,7 +719,9 @@
       gap: 6px;
     }
 
-    .modal-restrita-erro.visivel { display: flex; }
+    .modal-alerta.visivel { display: flex; }
+    .modal-alerta.erro    { background: #f8d7da; color: #842029; }
+    .modal-alerta.sucesso { background: #d1e7dd; color: #0a3622; }
 
     .modal-fechar {
       position: absolute;
@@ -806,6 +737,24 @@
     }
 
     .modal-fechar:hover { color: var(--dark); transform: scale(1.1); }
+
+    .btn-esqueci {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      transition: var(--transition);
+      display: block;
+      margin: 14px auto 0;
+    }
+
+    .btn-esqueci:hover { color: var(--primary-dark); }
+    .btn-esqueci:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* ── Animações ── */
     @keyframes fadeInUp {
@@ -835,30 +784,24 @@
       header h1 { font-size: 2rem; }
       header p  { font-size: 1rem; }
 
-      .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-      }
+      .hero-buttons { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+      .btn-outline  { margin-left: 0; }
 
-      .btn-outline { margin-left: 0; }
       .packages-container { grid-template-columns: 1fr; }
-      .sobre-grid { grid-template-columns: repeat(2, 1fr); }
-      .section-title { font-size: 1.8rem; }
+      .sobre-grid         { grid-template-columns: repeat(2, 1fr); }
+      .section-title      { font-size: 1.8rem; }
+
       .calendar-container { margin: 1.5rem; padding: 1rem; }
       .calendar-embed iframe { min-height: 500px; }
+
+      .modal-restrita-box { padding: 28px 20px; }
     }
 
     @media (max-width: 480px) {
       .sobre-grid { grid-template-columns: 1fr; }
-
-      .float-btn { width: 48px; height: 48px; font-size: 1.2rem; }
+      .float-btn  { width: 48px; height: 48px; font-size: 1.2rem; }
       .instagram  { right: 4.5rem; }
-
       .carousel-button { padding: 0.7rem 0.5rem; font-size: 1.2rem; }
-
-      .modal-restrita-box { padding: 28px 20px; }
     }
   </style>
 </head>
@@ -883,7 +826,6 @@
         <a href="#calendario">Disponibilidade</a>
         <a href="#contato">Contato</a>
         <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Reservar</a>
-        <!-- Área Restrita -->
         <button class="btn-area-restrita" id="btnAbrirLogin" title="Acesso administrativo">
           <i class="fas fa-lock"></i> Área Restrita
         </button>
@@ -982,16 +924,14 @@
   <!-- Valores -->
   <section id="valores">
     <h2 class="section-title fade-in">Opções de Locação</h2>
-    <p class="sobre-intro fade-in" style="margin-bottom: 0.5rem;">
+    <p class="sobre-intro fade-in" style="margin-bottom:0.5rem;">
       Taxa de limpeza inclusa em todas as opções.
     </p>
     <div class="packages-container fade-in">
 
       <!-- 1 dia -->
       <div class="package-card">
-        <div class="package-card-title">
-          <i class="far fa-calendar-alt"></i> 1 dia na casa
-        </div>
+        <div class="package-card-title"><i class="far fa-calendar-alt"></i> 1 dia na casa</div>
         <div class="package-schedule">
           <div class="package-schedule-row">
             <i class="fas fa-clock"></i>
@@ -1005,19 +945,15 @@
           <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
           <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
         </ul>
-        <div class="taxa-inclusa">
-          <i class="fas fa-check"></i> Taxa de limpeza inclusa
-        </div>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%201%20dia%20na%20Casa%20do%20Céu%20(10:00%20às%2020:00)%20por%20R$%201.249,90.%20Poderia%20me%20dar%20mais%20detalhes%20ou%20ajudar%20com%20a%20reserva?" class="btn" target="_blank" rel="noopener noreferrer">
+        <div class="taxa-inclusa"><i class="fas fa-check"></i> Taxa de limpeza inclusa</div>
+        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%201%20dia%20na%20Casa%20do%20Céu%20(10:00%20às%2020:00)%20por%20R$%201.249,90." class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> Reservar
         </a>
       </div>
 
       <!-- 2 dias -->
       <div class="package-card">
-        <div class="package-card-title">
-          <i class="far fa-calendar-alt"></i> 2 dias na casa
-        </div>
+        <div class="package-card-title"><i class="far fa-calendar-alt"></i> 2 dias na casa</div>
         <div class="package-schedule">
           <div class="package-schedule-row">
             <i class="fas fa-sign-in-alt"></i>
@@ -1035,19 +971,15 @@
           <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
           <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
         </ul>
-        <div class="taxa-inclusa">
-          <i class="fas fa-check"></i> Taxa de limpeza inclusa
-        </div>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%202%20dias%20na%20Casa%20do%20Céu%20(entrada%2012:00%20do%201º%20dia,%20saída%2020:00%20do%202º%20dia)%20por%20R$%201.899,90.%20Poderia%20me%20dar%20mais%20detalhes%20ou%20ajudar%20com%20a%20reserva?" class="btn" target="_blank" rel="noopener noreferrer">
+        <div class="taxa-inclusa"><i class="fas fa-check"></i> Taxa de limpeza inclusa</div>
+        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%202%20dias%20na%20Casa%20do%20Céu%20por%20R$%201.899,90." class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> Reservar
         </a>
       </div>
 
       <!-- 3 dias -->
       <div class="package-card">
-        <div class="package-card-title">
-          <i class="far fa-calendar-alt"></i> 3 dias na casa
-        </div>
+        <div class="package-card-title"><i class="far fa-calendar-alt"></i> 3 dias na casa</div>
         <div class="package-schedule">
           <div class="package-schedule-row">
             <i class="fas fa-sign-in-alt"></i>
@@ -1065,10 +997,8 @@
           <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
           <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
         </ul>
-        <div class="taxa-inclusa">
-          <i class="fas fa-check"></i> Taxa de limpeza inclusa
-        </div>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%203%20dias%20na%20Casa%20do%20Céu%20(entrada%2018:00%20do%201º%20dia,%20saída%2016:00%20do%203º%20dia)%20por%20R$%202.099,80.%20Poderia%20me%20dar%20mais%20detalhes%20ou%20ajudar%20com%20a%20reserva?" class="btn" target="_blank" rel="noopener noreferrer">
+        <div class="taxa-inclusa"><i class="fas fa-check"></i> Taxa de limpeza inclusa</div>
+        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%203%20dias%20na%20Casa%20do%20Céu%20por%20R$%202.099,80." class="btn" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-whatsapp"></i> Reservar
         </a>
       </div>
@@ -1080,17 +1010,14 @@
   <section id="localizacao">
     <h2 class="section-title fade-in">Nossa Localização</h2>
     <p class="fade-in">
-      <i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:0.4rem;"></i>
+      <i class="fas fa-map-marker-alt" style="color:var(--primary);margin-right:0.4rem;"></i>
       Rua das Nascentes, nº 10 – Vila Nossa Senhora de Fátima, Belo Horizonte/MG
     </p>
     <div class="map-container fade-in">
       <iframe
         src="https://www.google.com/maps?q=-19.938341,-43.903907&z=15&output=embed"
-        width="100%"
-        height="100%"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
+        width="100%" height="100%" style="border:0;"
+        allowfullscreen="" loading="lazy"
         title="Localização da Casa do Céu no Google Maps"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
@@ -1101,9 +1028,7 @@
       <p style="margin-bottom:1.5rem;color:var(--gray);">Os dias marcados já estão reservados.</p>
       <div class="calendar-embed">
         <iframe
-          frameborder="0"
-          loading="lazy"
-          scrolling="no"
+          frameborder="0" loading="lazy" scrolling="no"
           src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&ctz=America%2FSao_Paulo"
           title="Calendário de Disponibilidade da Casa do Céu">
         </iframe>
@@ -1129,7 +1054,7 @@
         <a href="mailto:casadoceubh@gmail.com" style="color:inherit;text-decoration:none;">casadoceubh@gmail.com</a>
       </div>
     </div>
-    <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." class="btn" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." class="btn" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-whatsapp"></i> Falar no WhatsApp
     </a>
   </section>
@@ -1148,10 +1073,10 @@
         <a href="#localizacao">Localização</a>
         <a href="#calendario">Disponibilidade</a>
         <a href="#contato">Contato</a>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Reservar</a>
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu." target="_blank" rel="noopener noreferrer">Reservar</a>
       </div>
       <div class="social-links">
-        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <a href="https://wa.me/5531975746489" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
           <i class="fab fa-whatsapp"></i>
         </a>
         <a href="https://instagram.com/casadoceubh" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -1185,9 +1110,9 @@
 
       <h2>Entrar</h2>
 
-      <div class="modal-restrita-erro" id="loginErro">
-        <i class="fas fa-exclamation-circle"></i>
-        <span id="loginErroTexto">E-mail ou senha incorretos.</span>
+      <div class="modal-alerta" id="loginAlerta">
+        <i class="fas fa-exclamation-circle" id="loginAlertaIcon"></i>
+        <span id="loginAlertaTexto"></span>
       </div>
 
       <form id="formLoginModal">
@@ -1203,41 +1128,51 @@
           <i class="fas fa-sign-in-alt"></i> Entrar
         </button>
       </form>
+
+      <button class="btn-esqueci" id="btnEsqueci">
+        Esqueci minha senha
+      </button>
     </div>
   </div>
 
   <!-- Firebase Auth -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
-      apiKey:            "AIzaSyCL0gUpVIKMYXKXJMRl4K_XHr5PbRp1rGI",
+      apiKey:            "AIzaSyCRJiT2aagQrp-zKSc2ZoVyvhouPhB4LRw",
       authDomain:        "casadoceu-reservas.firebaseapp.com",
       projectId:         "casadoceu-reservas",
-      storageBucket:     "casadoceu-reservas.appspot.com",
-      messagingSenderId: "826428801487",
-      appId:             "1:826428801487:web:3a0c7ee84a2f5d7e9e2b1c"
+      storageBucket:     "casadoceu-reservas.firebasestorage.app",
+      messagingSenderId: "376548443368",
+      appId:             "1:376548443368:web:c4c8373ddd8c0e6bf0f55d"
     };
 
     const app  = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    const modalRestrita  = document.getElementById('modalRestrita');
-    const btnAbrirLogin  = document.getElementById('btnAbrirLogin');
-    const btnFecharLogin = document.getElementById('btnFecharLogin');
-    const formLogin      = document.getElementById('formLoginModal');
-    const loginErro      = document.getElementById('loginErro');
-    const loginErroTexto = document.getElementById('loginErroTexto');
-    const btnEntrar      = document.getElementById('btnEntrar');
+    const modalRestrita = document.getElementById('modalRestrita');
+    const btnAbrirLogin = document.getElementById('btnAbrirLogin');
+    const btnFecharLogin= document.getElementById('btnFecharLogin');
+    const formLogin     = document.getElementById('formLoginModal');
+    const alertaEl      = document.getElementById('loginAlerta');
+    const alertaIconEl  = document.getElementById('loginAlertaIcon');
+    const alertaTextoEl = document.getElementById('loginAlertaTexto');
+    const btnEntrar     = document.getElementById('btnEntrar');
+    const btnEsqueci    = document.getElementById('btnEsqueci');
 
-    // Abrir modal
+    // ── Abrir modal ──
     btnAbrirLogin.addEventListener('click', () => {
       modalRestrita.classList.add('ativo');
-      document.getElementById('loginEmail').focus();
+      setTimeout(() => document.getElementById('loginEmail').focus(), 100);
     });
 
-    // Fechar modal
+    // ── Fechar modal ──
     btnFecharLogin.addEventListener('click', fecharModal);
     modalRestrita.addEventListener('click', (e) => {
       if (e.target === modalRestrita) fecharModal();
@@ -1248,14 +1183,31 @@
 
     function fecharModal() {
       modalRestrita.classList.remove('ativo');
-      loginErro.classList.remove('visivel');
+      esconderAlerta();
       formLogin.reset();
+      btnEntrar.disabled = false;
+      btnEntrar.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar';
+      btnEsqueci.disabled = false;
+      btnEsqueci.textContent = 'Esqueci minha senha';
     }
 
-    // Login
+    function mostrarAlerta(msg, tipo = 'erro') {
+      alertaEl.className = `modal-alerta visivel ${tipo}`;
+      alertaIconEl.className = tipo === 'erro'
+        ? 'fas fa-exclamation-circle'
+        : 'fas fa-check-circle';
+      alertaTextoEl.textContent = msg;
+    }
+
+    function esconderAlerta() {
+      alertaEl.className = 'modal-alerta';
+      alertaTextoEl.textContent = '';
+    }
+
+    // ── Login ──
     formLogin.addEventListener('submit', async (e) => {
       e.preventDefault();
-      loginErro.classList.remove('visivel');
+      esconderAlerta();
 
       const email = document.getElementById('loginEmail').value.trim();
       const senha = document.getElementById('loginSenha').value;
@@ -1267,20 +1219,58 @@
         await signInWithEmailAndPassword(auth, email, senha);
         window.location.href = '/admin/dashboard.html';
       } catch (err) {
+        console.error('Erro login:', err.code);
         let msg = 'E-mail ou senha incorretos.';
         if (err.code === 'auth/too-many-requests') {
-          msg = 'Muitas tentativas. Tente novamente mais tarde.';
+          msg = 'Muitas tentativas. Aguarde alguns minutos.';
         } else if (err.code === 'auth/network-request-failed') {
           msg = 'Erro de conexão. Verifique sua internet.';
+        } else if (err.code === 'auth/user-not-found') {
+          msg = 'Nenhuma conta encontrada com este e-mail.';
+        } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+          msg = 'E-mail ou senha incorretos.';
+        } else if (err.code === 'auth/invalid-email') {
+          msg = 'E-mail inválido.';
         }
-        loginErroTexto.textContent = msg;
-        loginErro.classList.add('visivel');
+        mostrarAlerta(msg, 'erro');
         btnEntrar.disabled = false;
         btnEntrar.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar';
       }
     });
+
+    // ── Esqueci minha senha ──
+    btnEsqueci.addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value.trim();
+
+      if (!email) {
+        mostrarAlerta('Digite seu e-mail acima antes de redefinir a senha.', 'erro');
+        return;
+      }
+
+      btnEsqueci.disabled = true;
+      btnEsqueci.textContent = 'Enviando...';
+      esconderAlerta();
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        mostrarAlerta(`E-mail de redefinição enviado para ${email}. Verifique sua caixa de entrada.`, 'sucesso');
+      } catch (err) {
+        console.error('Erro reset senha:', err.code);
+        let msg = 'Não foi possível enviar o e-mail.';
+        if (err.code === 'auth/user-not-found') {
+          msg = 'Nenhuma conta encontrada com este e-mail.';
+        } else if (err.code === 'auth/invalid-email') {
+          msg = 'E-mail inválido.';
+        }
+        mostrarAlerta(msg, 'erro');
+      } finally {
+        btnEsqueci.disabled = false;
+        btnEsqueci.textContent = 'Esqueci minha senha';
+      }
+    });
   </script>
 
+  <!-- Scripts gerais -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -1318,11 +1308,11 @@
       function updateIndicators() {
         indicatorsContainer.innerHTML = '';
         carouselItems.forEach((_, index) => {
-          const indicator = document.createElement('div');
-          indicator.classList.add('indicator');
-          if (index === currentIndex) indicator.classList.add('active');
-          indicator.addEventListener('click', () => { currentIndex = index; updateCarousel(); });
-          indicatorsContainer.appendChild(indicator);
+          const ind = document.createElement('div');
+          ind.classList.add('indicator');
+          if (index === currentIndex) ind.classList.add('active');
+          ind.addEventListener('click', () => { currentIndex = index; updateCarousel(); });
+          indicatorsContainer.appendChild(ind);
         });
       }
 
@@ -1344,16 +1334,14 @@
       const lightboxClose = document.getElementById('lightbox-close');
 
       document.querySelectorAll('.carousel-item').forEach(item => {
-        const openLightbox = () => {
+        const open = () => {
           lightboxImg.src = item.querySelector('img').src;
           lightboxImg.alt = item.querySelector('img').alt;
           lightbox.classList.add('active');
           document.body.style.overflow = 'hidden';
         };
-        item.addEventListener('click', openLightbox);
-        item.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') openLightbox();
-        });
+        item.addEventListener('click', open);
+        item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') open(); });
       });
 
       const closeLightbox = () => {
@@ -1399,3 +1387,4 @@
 
 </body>
 </html>
+

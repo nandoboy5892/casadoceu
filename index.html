@@ -1217,7 +1217,7 @@
 
       try {
         await signInWithEmailAndPassword(auth, email, senha);
-        window.location.href = '/admin/dashboard.html';
+        window.location.href = 'https://casadoceu-reservas.web.app/admin/dashboard.html';
       } catch (err) {
         console.error('Erro login:', err.code);
         let msg = 'E-mail ou senha incorretos.';
@@ -1387,4 +1387,5 @@
 
 </body>
 </html>
+
 

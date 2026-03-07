@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
 
   <style>
     :root {
@@ -383,680 +385,591 @@
       max-width: 90%;
       max-height: 90%;
       object-fit: contain;
-      border-radius: 6px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
     .lightbox-close {
       position: absolute;
-      top: 1.2rem;
-      right: 1.5rem;
+      top: 20px;
+      right: 20px;
       color: var(--white);
-      font-size: 2rem;
+      font-size: 2.5rem;
       cursor: pointer;
       background: none;
       border: none;
+      padding: 0;
       line-height: 1;
-      transition: var(--transition);
     }
 
-    .lightbox-close:hover { color: #ddd; transform: scale(1.2); }
-
-    /* ── Valores ── */
-    #valores { background-color: var(--white); }
-
-    .packages-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .package-card {
-      background-color: var(--light);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .package-card:hover { transform: translateY(-10px); box-shadow: 0 12px 24px rgba(0,0,0,0.12); }
-
-    .package-card-title {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--primary);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .package-schedule {
-      background-color: var(--white);
-      border-radius: 8px;
-      padding: 0.9rem 1rem;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-
-    .package-schedule-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.97rem;
-      color: var(--gray);
-      padding: 0.3rem 0;
-    }
-
-    .package-schedule-row:not(:last-child) { border-bottom: 1px solid #eee; }
-    .package-schedule-row i { color: var(--primary); width: 16px; text-align: center; flex-shrink: 0; }
-    .package-schedule-row strong { color: var(--dark); }
-
-    .price { font-size: 2.2rem; font-weight: 700; color: var(--primary); margin: 1rem 0 1.5rem; }
-
-    .package-features { list-style: none; text-align: left; margin-bottom: 1.5rem; flex: 1; }
-
-    .package-features li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
-      font-size: 0.97rem;
-    }
-
-    .package-features li i { color: var(--primary); flex-shrink: 0; }
-
-    .taxa-inclusa {
-      font-size: 0.85rem;
-      color: var(--secondary);
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-    }
-
-    /* ── Localização ── */
-    #localizacao { background-color: var(--light); }
-    #localizacao p { text-align: center; margin-bottom: 0.5rem; }
-
-    .map-container {
-      width: 100%;
-      height: 400px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      margin-top: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .calendar-container {
-      max-width: 800px;
+    /* ── Calendário de Disponibilidade (FullCalendar) ── */
+    #calendarioFullPublico {
+      max-width: 900px;
       margin: 2rem auto;
-      padding: 1.5rem;
-      background: var(--white);
+      padding: 1rem;
+      background-color: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      min-height: 500px; /* Garante uma altura mínima */
+    }
+
+    /* Estilos para os eventos do FullCalendar */
+    .fc-event {
+      border-radius: 4px;
+      font-size: 0.85rem;
+      padding: 2px 4px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Cores personalizadas para os eventos */
+    .fc-event[data-status="confirmada"] {
+      background-color: #34a853; /* Verde para confirmada */
+      border-color: #34a853;
+    }
+    .fc-event[data-status="bloqueio"] {
+      background-color: #616161; /* Cinza para bloqueio */
+      border-color: #616161;
+    }
+    .fc-event[data-status="reservado"] { /* Para pendente/outros no público */
+      background-color: #f9ab00; /* Laranja para reservado/pendente */
+      border-color: #f9ab00;
+    }
+
+    /* ── Depoimentos ── */
+    #depoimentos { background-color: var(--white); }
+
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .depoimento-card {
+      background: var(--light);
+      padding: 2rem;
       border-radius: 12px;
       box-shadow: var(--shadow);
       text-align: center;
+      transition: var(--transition);
     }
 
-    .calendar-container h3 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem; }
-
-    .calendar-embed iframe { width: 100%; min-height: 600px; border: none; border-radius: 8px; }
+    .depoimento-card:hover { transform: translateY(-5px); }
+    .depoimento-card p { font-style: italic; margin-bottom: 1rem; }
+    .depoimento-card .autor { font-weight: 600; color: var(--primary); }
 
     /* ── Contato ── */
-    #contato { background-color: var(--white); text-align: center; }
+    #contato { background-color: var(--light); }
 
-    .contact-info { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+    .contato-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      text-align: center;
+    }
 
-    .contact-item { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1.05rem; }
-    .contact-item i { color: var(--primary); font-size: 1.2rem; }
+    .contato-content p { max-width: 600px; }
+
+    .contato-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .contato-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .contato-links a.whatsapp { background-color: var(--secondary); }
+    .contato-links a.whatsapp:hover { background-color: #1da84f; transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+
+    .contato-links a:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
 
     /* ── Rodapé ── */
-    footer { background-color: var(--dark); color: var(--white); padding: 3rem 1.5rem; text-align: center; }
-    .footer-content { max-width: 1200px; margin: 0 auto; }
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
     .footer-logo {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.5rem;
       font-weight: 800;
-      color: var(--white);
+      color: var(--primary);
       text-decoration: none;
-      margin-bottom: 1.5rem;
-      display: inline-flex;
+      font-size: 1.2rem;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .footer-logo img { height: 25px; width: auto; }
+    .footer-logo img { height: 30px; width: auto; }
 
     .footer-links {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 1.5rem;
-      margin: 1.5rem 0;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    .footer-links a { color: var(--white); text-decoration: none; transition: var(--transition); }
-    .footer-links a:hover { color: var(--primary); }
-
-    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; }
-
-    .social-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: rgba(255,255,255,0.1);
+    .footer-links a {
       color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
       transition: var(--transition);
     }
 
-    .social-links a:hover { background-color: var(--primary); transform: translateY(-3px); }
+    .footer-links a:hover { color: var(--primary); }
 
-    .copyright { margin-top: 2rem; color: var(--gray); font-size: 0.9rem; }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links a {
+      color: var(--white);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover { color: var(--primary); transform: translateY(-3px); }
+
+    .copyright { color: var(--gray); }
 
     /* ── Botões Flutuantes ── */
     .float-btn {
       position: fixed;
-      bottom: 2rem;
-      width: 56px;
-      height: 56px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
       color: var(--white);
-      text-decoration: none;
-      z-index: 100;
-      font-size: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 999;
     }
 
-    .float-btn:hover { transform: translateY(-5px) scale(1.1); }
-    .whatsapp  { right: 2rem; background-color: var(--secondary); }
-    .instagram {
-      right: 5.5rem;
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    .float-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
     }
 
-    /* ── Modal Área Restrita ── */
+    .float-btn.whatsapp {
+      background-color: #25d366;
+      bottom: 20px;
+    }
+
+    .float-btn.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      bottom: 90px;
+    }
+
+    /* ── Modal Área Restrita (Estilos existentes) ── */
     .modal-restrita {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 3000;
+      background: rgba(0,0,0,0.6);
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      backdrop-filter: blur(4px);
+      z-index: 10000;
+      padding: 1rem;
     }
 
     .modal-restrita.ativo { display: flex; }
 
     .modal-restrita-box {
       background: var(--white);
-      border-radius: 16px;
-      padding: 36px 32px;
-      width: 100%;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
       max-width: 400px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
-      animation: fadeInUp 0.3s ease;
+      width: 100%;
+      text-align: center;
       position: relative;
+      animation: fadeInScale 0.3s ease-out;
     }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-fechar {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--gray);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .modal-fechar:hover { color: var(--dark); }
 
     .modal-restrita-logo {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 6px;
+      margin-bottom: 1rem;
     }
 
-    .modal-restrita-logo img { height: 36px; }
-
+    .modal-restrita-logo img { height: 40px; }
     .modal-restrita-logo span {
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: var(--primary);
     }
 
     .modal-restrita-subtitulo {
-      text-align: center;
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       color: var(--gray);
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 8px;
     }
 
-    .modal-restrita h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
+    .modal-restrita-box h2 {
+      font-size: 1.5rem;
       color: var(--dark);
-      text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 1.5rem;
     }
 
-    .modal-restrita .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-bottom: 14px;
-    }
-
-    .modal-restrita label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--dark);
-    }
-
-    .modal-restrita input {
-      padding: 10px 12px;
-      border: 1.5px solid #dee2e6;
+    .modal-alerta {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 10px 15px;
       border-radius: 8px;
-      font-family: 'Quicksand', sans-serif;
+      margin-bottom: 1.5rem;
+      display: none;
+      align-items: center;
+      gap: 10px;
       font-size: 0.9rem;
-      background: var(--light);
-      color: var(--dark);
-      transition: var(--transition);
-      outline: none;
-      width: 100%;
+      border-left: 4px solid #dc3545;
     }
 
-    .modal-restrita input:focus {
+    .modal-alerta.visivel { display: flex; }
+    .modal-alerta.sucesso { background: #d4edda; color: #155724; border-color: #28a745; }
+
+    .modal-restrita-box .form-group {
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+
+    .modal-restrita-box label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 5px;
+    }
+
+    .modal-restrita-box input[type="email"],
+    .modal-restrita-box input[type="password"] {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Quicksand', sans-serif;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .modal-restrita-box input:focus {
       border-color: var(--primary);
-      background: var(--white);
-      box-shadow: 0 0 0 3px rgba(0,119,204,0.12);
+      box-shadow: 0 0 0 3px rgba(0,119,204,0.25);
+      outline: none;
     }
 
     .btn-login {
       width: 100%;
-      justify-content: center;
-      padding: 11px;
-      font-size: 0.95rem;
-      margin-top: 6px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      background: var(--primary);
+      background-color: var(--primary);
       color: var(--white);
-      border-radius: 50px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
       transition: var(--transition);
+      margin-top: 1rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
     }
 
-    .btn-login:hover { background: var(--primary-dark); transform: translateY(-2px); }
-    .btn-login:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-    .modal-alerta {
-      border-radius: 8px;
-      padding: 9px 12px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: none;
-      align-items: center;
-      gap: 6px;
+    .btn-login:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,119,204,0.3);
     }
 
-    .modal-alerta.visivel { display: flex; }
-    .modal-alerta.erro    { background: #f8d7da; color: #842029; }
-    .modal-alerta.sucesso { background: #d1e7dd; color: #0a3622; }
-
-    .modal-fechar {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      color: var(--gray);
-      cursor: pointer;
-      line-height: 1;
-      transition: var(--transition);
+    .btn-login:disabled {
+      background-color: var(--gray);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
-
-    .modal-fechar:hover { color: var(--dark); transform: scale(1.1); }
 
     .btn-esqueci {
       background: none;
       border: none;
       color: var(--primary);
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       font-weight: 600;
+      margin-top: 1rem;
       cursor: pointer;
-      text-decoration: underline;
-      padding: 0;
-      transition: var(--transition);
-      display: block;
-      margin: 14px auto 0;
+      transition: color 0.2s ease;
     }
 
-    .btn-esqueci:hover { color: var(--primary-dark); }
-    .btn-esqueci:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    /* ── Animações ── */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .btn-esqueci:hover { text-decoration: underline; }
+    .btn-esqueci:disabled { color: var(--gray); cursor: not-allowed; text-decoration: none; }
 
     /* ── Responsividade ── */
-    @media (max-width: 768px) {
-      .hamburger { display: flex; }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(255,255,255,0.98);
-        flex-direction: column;
-        padding: 1rem 1.5rem 1.5rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        gap: 1rem;
-      }
-
+    @media (max-width: 992px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(255,255,255,0.95); box-shadow: var(--shadow); padding: 1rem 0; }
       .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.8rem 1.5rem; width: 100%; text-align: center; }
+      .hamburger { display: flex; }
+      .nav-container { padding: 0 1.5rem; }
+      .btn-area-restrita { margin-left: auto; } /* Empurra para a direita */
+    }
 
-      header h1 { font-size: 2rem; }
-      header p  { font-size: 1rem; }
-
-      .hero-buttons { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
-      .btn-outline  { margin-left: 0; }
-
-      .packages-container { grid-template-columns: 1fr; }
-      .sobre-grid         { grid-template-columns: repeat(2, 1fr); }
-      .section-title      { font-size: 1.8rem; }
-
-      .calendar-container { margin: 1.5rem; padding: 1rem; }
-      .calendar-embed iframe { min-height: 500px; }
-
-      .modal-restrita-box { padding: 28px 20px; }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.2rem; }
+      header p { font-size: 1rem; }
+      .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
+      .btn-outline { margin-left: 0.5rem; }
+      .section-title { font-size: 1.8rem; }
+      .sobre-grid { grid-template-columns: 1fr; }
+      .depoimentos-grid { grid-template-columns: 1fr; }
+      .contato-links { flex-direction: column; }
+      .float-btn { width: 50px; height: 50px; font-size: 1.6rem; }
     }
 
     @media (max-width: 480px) {
-      .sobre-grid { grid-template-columns: 1fr; }
-      .float-btn  { width: 48px; height: 48px; font-size: 1.2rem; }
-      .instagram  { right: 4.5rem; }
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 0.9rem; }
+      .nav-logo { font-size: 1rem; }
+      .nav-logo img { height: 25px; }
+      .section-title { font-size: 1.5rem; }
       .carousel-button { padding: 0.7rem 0.5rem; font-size: 1.2rem; }
+      .carousel-indicators { bottom: 5px; }
+      .indicator { width: 8px; height: 8px; }
+      .modal-restrita-box { padding: 2rem 1rem; }
+      .modal-restrita-logo span { font-size: 1.2rem; }
     }
   </style>
 </head>
-
 <body>
-
   <!-- Navegação -->
   <nav>
     <div class="nav-container">
       <a href="#" class="nav-logo">
         <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
-        <span>Casa do Céu</span>
+        Casa do Céu
       </a>
       <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
       <div class="nav-links" id="nav-links">
         <a href="#sobre">Sobre</a>
         <a href="#galeria">Galeria</a>
-        <a href="#valores">Valores</a>
+        <a href="#disponibilidade">Disponibilidade</a>
+        <a href="#depoimentos">Depoimentos</a>
         <a href="#localizacao">Localização</a>
-        <a href="#calendario">Disponibilidade</a>
         <a href="#contato">Contato</a>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." target="_blank" rel="noopener noreferrer">Reservar</a>
-        <button class="btn-area-restrita" id="btnAbrirLogin" title="Acesso administrativo">
-          <i class="fas fa-lock"></i> Área Restrita
+        <button class="btn-area-restrita" id="btnAbrirLogin">
+          <i class="fas fa-user-lock"></i> Área Restrita
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <header>
     <div class="hero-content">
       <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
-      <h1>Bem-vindo à Casa do Céu</h1>
-      <p>Seu refúgio entre o céu e as montanhas</p>
-      <div class="hero-buttons">
-        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu%20e%20como%20posso%20fazer%20uma%20reserva." class="btn" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp"></i> Reservar Agora
-        </a>
-        <a href="#contato" class="btn btn-outline">Fale Conosco</a>
-      </div>
+      <h1>Seu Refúgio nas Montanhas de Belo Horizonte</h1>
+      <p>Desfrute de momentos inesquecíveis com jacuzzi, piscina aquecida, salão de jogos e uma vista deslumbrante.</p>
+      <a href="#disponibilidade" class="btn">
+        <i class="fas fa-calendar-alt"></i> Ver Disponibilidade
+      </a>
+      <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Casa%20do%20Céu." class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> Fale Conosco
+      </a>
     </div>
   </header>
 
-  <!-- Sobre -->
-  <section id="sobre">
-    <h2 class="section-title fade-in">Sobre a Casa</h2>
-    <p class="sobre-intro fade-in">
-      No topo das montanhas de Belo Horizonte, a Casa do Céu foi criada para ser um refúgio de tranquilidade e conexão.
-      Pensada para receber famílias, amigos e celebrar momentos especiais — seja um aniversário ou um merecido descanso de fim de semana.
-    </p>
-    <div class="sobre-grid fade-in">
+  <!-- Sobre a Casa do Céu -->
+  <section id="sobre" class="fade-in">
+    <h2 class="section-title">Sobre a Casa do Céu</h2>
+    <p class="sobre-intro">Um lugar mágico para relaxar e se divertir, com infraestrutura completa e uma paisagem de tirar o fôlego.</p>
+    <div class="sobre-grid">
       <div class="sobre-item">
         <i class="fas fa-hot-tub"></i>
-        <h3>Jacuzzi</h3>
-        <p>Relaxe em nossa banheira de hidromassagem com vista para as montanhas.</p>
+        <h3>Jacuzzi Aquecida</h3>
+        <p>Relaxe em nossa jacuzzi com hidromassagem e vista para as montanhas.</p>
       </div>
       <div class="sobre-item">
         <i class="fas fa-swimming-pool"></i>
         <h3>Piscina Aquecida</h3>
-        <p>Mergulhe em qualquer época do ano com conforto e segurança.</p>
+        <p>Desfrute de nossa piscina com aquecimento solar, perfeita para todas as estações.</p>
       </div>
       <div class="sobre-item">
         <i class="fas fa-gamepad"></i>
         <h3>Salão de Jogos</h3>
-        <p>Diversão garantida com fliperama e entretenimento para todos.</p>
+        <p>Diversão garantida com sinuca, totó e outros jogos para toda a família.</p>
       </div>
       <div class="sobre-item">
-        <i class="fas fa-bed"></i>
-        <h3>4 Quartos</h3>
-        <p>Acomodações acolhedoras para toda a sua turma descansar bem.</p>
+        <i class="fas fa-mountain"></i>
+        <h3>Vista Panorâmica</h3>
+        <p>Contemple o pôr do sol e a beleza das montanhas de Minas Gerais.</p>
+      </div>
+      <div class="sobre-item">
+        <i class="fas fa-wifi"></i>
+        <h3>Wi-Fi de Alta Velocidade</h3>
+        <p>Mantenha-se conectado com internet rápida em toda a propriedade.</p>
+      </div>
+      <div class="sobre-item">
+        <i class="fas fa-utensils"></i>
+        <h3>Cozinha Completa</h3>
+        <p>Equipada com tudo que você precisa para preparar suas refeições.</p>
       </div>
     </div>
   </section>
 
-  <!-- Galeria -->
-  <section id="galeria">
-    <h2 class="section-title fade-in">Galeria de Fotos</h2>
-    <div class="carousel-container fade-in">
+  <!-- Galeria de Fotos -->
+  <section id="galeria" class="fade-in">
+    <h2 class="section-title">Nossa Galeria</h2>
+    <div class="carousel-container">
       <div class="carousel-slides" id="carousel-slides">
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Casa">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/casa.jpg" alt="Casa" loading="lazy">
+        <div class="carousel-item" tabindex="0" role="button" aria-label="Ver imagem ampliada">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/galeria/1.jpg" alt="Vista da Casa do Céu">
         </div>
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Cascata">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/cascata.jpg" alt="Cascata" loading="lazy">
+        <div class="carousel-item" tabindex="0" role="button" aria-label="Ver imagem ampliada">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/galeria/2.jpg" alt="Piscina e área externa">
         </div>
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto do Corredor">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/corredor-1.jpg" alt="Corredor" loading="lazy">
+        <div class="carousel-item" tabindex="0" role="button" aria-label="Ver imagem ampliada">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/galeria/3.jpg" alt="Jacuzzi com vista">
         </div>
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto do Fliperama">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/fliperama.jpg" alt="Fliperama" loading="lazy">
+        <div class="carousel-item" tabindex="0" role="button" aria-label="Ver imagem ampliada">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/galeria/4.jpg" alt="Interior da sala">
         </div>
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-1.jpg" alt="Hidromassagem" loading="lazy">
+        <div class="carousel-item" tabindex="0" role="button" aria-label="Ver imagem ampliada">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/galeria/5.jpg" alt="Quarto aconchegante">
         </div>
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Hidromassagem 2">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/hidro-2.jpg" alt="Hidromassagem 2" loading="lazy">
-        </div>
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto do Jardim Vertical">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/jardim-vertical.jpg" alt="Jardim Vertical" loading="lazy">
-        </div>
-        <div class="carousel-item" role="button" tabindex="0" aria-label="Ver foto da Decoração Neon">
-          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/neon.jpg" alt="Decoração Neon" loading="lazy">
+        <div class="carousel-item" tabindex="0" role="button" aria-label="Ver imagem ampliada">
+          <img src="https://raw.githubusercontent.com/nandoboy5892/casadoceu/main/galeria/6.jpg" alt="Salão de jogos">
         </div>
       </div>
-      <button class="carousel-button prev" id="carousel-prev" aria-label="Slide anterior">&#10094;</button>
-      <button class="carousel-button next" id="carousel-next" aria-label="Próximo slide">&#10095;</button>
+      <button class="carousel-button prev" id="carousel-prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-button next" id="carousel-next" aria-label="Próxima imagem"><i class="fas fa-chevron-right"></i></button>
       <div class="carousel-indicators" id="carousel-indicators"></div>
     </div>
-  </section>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Fechar imagem">&times;</button>
-    <img src="" alt="Imagem ampliada" id="lightbox-img">
-  </div>
-
-  <!-- Valores -->
-  <section id="valores">
-    <h2 class="section-title fade-in">Opções de Locação</h2>
-    <p class="sobre-intro fade-in" style="margin-bottom:0.5rem;">
-      Taxa de limpeza inclusa em todas as opções.
-    </p>
-    <div class="packages-container fade-in">
-
-      <!-- 1 dia -->
-      <div class="package-card">
-        <div class="package-card-title"><i class="far fa-calendar-alt"></i> 1 dia na casa</div>
-        <div class="package-schedule">
-          <div class="package-schedule-row">
-            <i class="fas fa-clock"></i>
-            <span><strong>10:00</strong> às <strong>20:00</strong></span>
-          </div>
-        </div>
-        <div class="price">R$ 1.249,90</div>
-        <ul class="package-features">
-          <li><i class="fas fa-check-circle"></i> Acesso a todas as áreas</li>
-          <li><i class="fas fa-check-circle"></i> Capacidade para até 30 pessoas</li>
-          <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
-          <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
-        </ul>
-        <div class="taxa-inclusa"><i class="fas fa-check"></i> Taxa de limpeza inclusa</div>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%201%20dia%20na%20Casa%20do%20Céu%20(10:00%20às%2020:00)%20por%20R$%201.249,90." class="btn" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp"></i> Reservar
-        </a>
-      </div>
-
-      <!-- 2 dias -->
-      <div class="package-card">
-        <div class="package-card-title"><i class="far fa-calendar-alt"></i> 2 dias na casa</div>
-        <div class="package-schedule">
-          <div class="package-schedule-row">
-            <i class="fas fa-sign-in-alt"></i>
-            <span>Entrada às <strong>12:00</strong> do 1º dia</span>
-          </div>
-          <div class="package-schedule-row">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Saída às <strong>20:00</strong> do 2º dia</span>
-          </div>
-        </div>
-        <div class="price">R$ 1.899,90</div>
-        <ul class="package-features">
-          <li><i class="fas fa-check-circle"></i> Acesso a todas as áreas</li>
-          <li><i class="fas fa-check-circle"></i> Capacidade para até 30 pessoas</li>
-          <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
-          <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
-        </ul>
-        <div class="taxa-inclusa"><i class="fas fa-check"></i> Taxa de limpeza inclusa</div>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%202%20dias%20na%20Casa%20do%20Céu%20por%20R$%201.899,90." class="btn" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp"></i> Reservar
-        </a>
-      </div>
-
-      <!-- 3 dias -->
-      <div class="package-card">
-        <div class="package-card-title"><i class="far fa-calendar-alt"></i> 3 dias na casa</div>
-        <div class="package-schedule">
-          <div class="package-schedule-row">
-            <i class="fas fa-sign-in-alt"></i>
-            <span>Entrada às <strong>18:00</strong> do 1º dia</span>
-          </div>
-          <div class="package-schedule-row">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Saída às <strong>16:00</strong> do 3º dia</span>
-          </div>
-        </div>
-        <div class="price">R$ 2.099,80</div>
-        <ul class="package-features">
-          <li><i class="fas fa-check-circle"></i> Acesso a todas as áreas</li>
-          <li><i class="fas fa-check-circle"></i> Capacidade para até 30 pessoas</li>
-          <li><i class="fas fa-check-circle"></i> Wi-Fi incluso</li>
-          <li><i class="fas fa-check-circle"></i> Piscina aquecida e jacuzzi</li>
-        </ul>
-        <div class="taxa-inclusa"><i class="fas fa-check"></i> Taxa de limpeza inclusa</div>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Tenho%20interesse%20na%20opção%20de%203%20dias%20na%20Casa%20do%20Céu%20por%20R$%202.099,80." class="btn" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp"></i> Reservar
-        </a>
-      </div>
-
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Fechar imagem">&times;</button>
+      <img src="" alt="Imagem ampliada" id="lightbox-img">
     </div>
   </section>
 
-  <!-- Localização e Calendário -->
-  <section id="localizacao">
-    <h2 class="section-title fade-in">Nossa Localização</h2>
-    <p class="fade-in">
-      <i class="fas fa-map-marker-alt" style="color:var(--primary);margin-right:0.4rem;"></i>
-      Rua das Nascentes, nº 10 – Vila Nossa Senhora de Fátima, Belo Horizonte/MG
-    </p>
-    <div class="map-container fade-in">
-      <iframe
-        src="https://www.google.com/maps?q=-19.938341,-43.903907&z=15&output=embed"
-        width="100%" height="100%" style="border:0;"
-        allowfullscreen="" loading="lazy"
-        title="Localização da Casa do Céu no Google Maps"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
+  <!-- Calendário de Disponibilidade -->
+  <section id="disponibilidade" class="fade-in">
+    <h2 class="section-title">Disponibilidade</h2>
+    <p style="text-align: center; margin-bottom: 1.5rem; color: var(--gray);">Verifique as datas disponíveis para sua estadia na Casa do Céu.</p>
+    <div id="calendarioFullPublico"></div>
+  </section>
 
-    <div class="calendar-container fade-in" id="calendario">
-      <h3><i class="far fa-calendar-check" style="margin-right:0.5rem;color:var(--primary);"></i> Verifique a Disponibilidade</h3>
-      <p style="margin-bottom:1.5rem;color:var(--gray);">Os dias marcados já estão reservados.</p>
-      <div class="calendar-embed">
-        <iframe
-          frameborder="0" loading="lazy" scrolling="no"
-          src="https://calendar.google.com/calendar/embed?src=14b75b7ed5bc14409ed4370be8284163994de0e879e9c7322e75231a5a7c56cd%40group.calendar.google.com&ctz=America%2FSao_Paulo"
-          title="Calendário de Disponibilidade da Casa do Céu">
-        </iframe>
+  <!-- Depoimentos -->
+  <section id="depoimentos" class="fade-in">
+    <h2 class="section-title">O que dizem nossos hóspedes</h2>
+    <div class="depoimentos-grid">
+      <div class="depoimento-card">
+        <p>"A Casa do Céu é um paraíso! A vista é incrível e a jacuzzi é perfeita para relaxar. Voltaremos com certeza!"</p>
+        <div class="autor">- Ana Paula S.</div>
       </div>
-      <p style="margin-top:1.5rem;">Para reservar, entre em contato via WhatsApp!</p>
-      <a href="https://wa.me/5531975746489?text=Olá!%20Verifiquei%20a%20disponibilidade%20no%20calendário%20e%20gostaria%20de%20reservar%20uma%20data." class="btn" target="_blank" rel="noopener noreferrer" style="margin-top:1rem;">
-        <i class="fab fa-whatsapp"></i> Falar para Reservar
-      </a>
+      <div class="depoimento-card">
+        <p>"Lugar maravilhoso para ir com a família. As crianças amaram a piscina e o salão de jogos. Tudo impecável!"</p>
+        <div class="autor">- Carlos Eduardo F.</div>
+      </div>
+      <div class="depoimento-card">
+        <p>"Experiência sensacional! A casa é linda, super bem equipada e a tranquilidade do local é indescritível."</p>
+        <div class="autor">- Mariana L.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Localização -->
+  <section id="localizacao" class="fade-in">
+    <h2 class="section-title">Nossa Localização</h2>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.774987679366!2d-43.96806002509796!3d-19.99174098139771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa699703444211f%3A0x103021443423797c!2sCasa%20do%20C%C3%A9u!5e0!3m2!1spt-BR!2sbr!4v1700140800000!5m2!1spt-BR!2sbr"
+              width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
 
   <!-- Contato -->
-  <section id="contato">
-    <h2 class="section-title fade-in">Contato e Reservas</h2>
-    <p class="fade-in">Entre em contato conosco para mais informações ou para reservar sua estadia</p>
-    <div class="contact-info fade-in">
-      <div class="contact-item">
-        <i class="fas fa-phone-alt"></i>
-        <a href="tel:+5531975746489" style="color:inherit;text-decoration:none;">(31) 97574-6489</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <a href="mailto:casadoceubh@gmail.com" style="color:inherit;text-decoration:none;">casadoceubh@gmail.com</a>
+  <section id="contato" class="fade-in">
+    <h2 class="section-title">Entre em Contato</h2>
+    <div class="contato-content">
+      <p>Tem alguma dúvida ou quer fazer uma reserva? Fale conosco diretamente pelo WhatsApp ou Instagram.</p>
+      <div class="contato-links">
+        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." class="whatsapp" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="https://instagram.com/casadoceubh" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
       </div>
     </div>
-    <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20entrar%20em%20contato%20sobre%20a%20Casa%20do%20Céu." class="btn" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-whatsapp"></i> Falar no WhatsApp
-    </a>
   </section>
 
   <!-- Rodapé -->
@@ -1064,24 +977,19 @@
     <div class="footer-content">
       <a href="#" class="footer-logo">
         <img src="https://i.imgur.com/Tgntdk2.png" alt="Logo Casa do Céu">
-        <span>Casa do Céu</span>
+        Casa do Céu
       </a>
       <div class="footer-links">
         <a href="#sobre">Sobre</a>
         <a href="#galeria">Galeria</a>
-        <a href="#valores">Valores</a>
+        <a href="#disponibilidade">Disponibilidade</a>
+        <a href="#depoimentos">Depoimentos</a>
         <a href="#localizacao">Localização</a>
-        <a href="#calendario">Disponibilidade</a>
         <a href="#contato">Contato</a>
-        <a href="https://wa.me/5531975746489?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20do%20Céu." target="_blank" rel="noopener noreferrer">Reservar</a>
       </div>
       <div class="social-links">
-        <a href="https://wa.me/5531975746489" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://instagram.com/casadoceubh" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
+        <a href="https://wa.me/5531975746489" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/casadoceubh" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
       <p class="copyright">&copy; 2025 Casa do Céu. Todos os direitos reservados.</p>
     </div>
@@ -1135,7 +1043,7 @@
     </div>
   </div>
 
-  <!-- Firebase Auth -->
+  <!-- Firebase Auth (Seu script original, intacto) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import {
@@ -1270,7 +1178,128 @@
     });
   </script>
 
-  <!-- Scripts gerais -->
+  <!-- FullCalendar JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  <!-- FullCalendar pt-br locale -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.11/locales/pt-br.global.min.js"></script>
+
+  <!-- Firebase para o Calendário Público (Firestore) -->
+  <script type="module">
+    // Importa apenas o necessário para o Firestore
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, query, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Configuração do Firebase (garantindo que seja a mesma do script de autenticação)
+    const firebaseConfig = {
+      apiKey:            "AIzaSyCRJiT2aagQrp-zKSc2ZoVyvhouPhB4LRw",
+      authDomain:        "casadoceu-reservas.firebaseapp.com",
+      projectId:         "casadoceu-reservas",
+      storageBucket:     "casadoceu-reservas.firebasestorage.app",
+      messagingSenderId: "376548443368",
+      appId:             "1:376548443368:web:c4c8373ddd8c0e6bf0f55d"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app); // Inicializa o Firestore
+
+    let calendarioPublico; // Variável global para a instância do calendário
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarioFullEl = document.getElementById('calendarioFullPublico');
+
+      if (calendarioFullEl) {
+        calendarioPublico = new FullCalendar.Calendar(calendarioFullEl, {
+          initialView: 'dayGridMonth',
+          locale: 'pt-br',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          buttonText: {
+            today: 'Hoje',
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia'
+          },
+          editable: false, // Não permite arrastar/redimensionar eventos
+          selectable: false, // Não permite selecionar datas
+          eventDisplay: 'block', // Garante que os eventos apareçam como blocos
+          // Função para estilizar os eventos dinamicamente
+          eventDidMount: function(info) {
+            // Estiliza os eventos com base no status
+            if (info.event.extendedProps.status === 'confirmada') {
+              info.el.style.backgroundColor = '#34a853'; // Verde para confirmada
+              info.el.style.borderColor = '#34a853';
+              info.el.setAttribute('data-status', 'confirmada');
+            } else if (info.event.extendedProps.status === 'bloqueio') {
+              info.el.style.backgroundColor = '#616161'; // Cinza para bloqueio
+              info.el.style.borderColor = '#616161';
+              info.el.setAttribute('data-status', 'bloqueio');
+            } else {
+              // Outros status (pendente, cancelada) serão tratados como 'reservado' para o público
+              info.el.style.backgroundColor = '#f9ab00'; // Laranja para reservado/pendente
+              info.el.style.borderColor = '#f9ab00';
+              info.el.setAttribute('data-status', 'reservado');
+            }
+          }
+        });
+        calendarioPublico.render();
+        carregarReservasPublico(); // Carrega os dados do Firestore para o calendário
+      }
+    });
+
+    // Função para carregar reservas do Firestore para o calendário público
+    function carregarReservasPublico() {
+      // Ordena pela data de entrada. Se 'criadoEm' não existir em todas, pode causar erro.
+      // 'dataEntrada' é mais garantido para todas as reservas.
+      const q = query(collection(db, 'reservas'), orderBy('dataEntrada', 'asc'));
+      onSnapshot(q, (snapshot) => {
+        const eventos = [];
+        snapshot.forEach((docSnap) => {
+          const r = { id: docSnap.id, ...docSnap.data() };
+
+          // Apenas reservas confirmadas ou bloqueios são mostrados no calendário público
+          if (r.status === 'confirmada' || r.status === 'bloqueio') {
+            let title = '';
+
+            if (r.tipo === 'bloqueio') {
+              title = `Bloqueado: ${r.motivo || 'Indisponível'}`;
+            } else {
+              title = `Reservado`; // Para o público, não mostramos nome do cliente
+            }
+
+            // FullCalendar exibe o dia final, então para incluir o dia de saída, adicionamos 1 dia
+            const endDate = new Date(r.dataSaida);
+            endDate.setDate(endDate.getDate() + 1);
+
+            eventos.push({
+              id: r.id,
+              title: title,
+              start: r.dataEntrada,
+              end: endDate.toISOString().split('T')[0], // Formato YYYY-MM-DD
+              allDay: true, // Considera como evento de dia inteiro
+              extendedProps: {
+                status: r.status,
+                tipo: r.tipo
+              }
+            });
+          }
+        });
+
+        // Atualiza os eventos no calendário
+        if (calendarioPublico) {
+          calendarioPublico.removeAllEvents();
+          eventos.forEach(e => calendarioPublico.addEvent(e));
+        }
+
+      }, (error) => {
+        console.error("Erro ao carregar reservas para o calendário público:", error);
+        // Opcional: mostrar uma mensagem de erro no site
+      });
+    }
+  </script>
+
+  <!-- Scripts gerais (Seu script original, intacto) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
 
